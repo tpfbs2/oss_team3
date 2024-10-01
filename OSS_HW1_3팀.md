@@ -71,3 +71,122 @@
    ![accessibility-inspector-tabbing_order](https://github.com/user-attachments/assets/2057f6cb-f2ad-4736-9568-202630c2addc)
 &nbsp; 왼쪽에는 현재 페이지의 접근성 트리에 있는 모든 항목을 나타내는 트리 다이어그램이 나타나있다. 중첩된 항목이 있는 경우, 화살표를 클릭하여 세부 항목을 확인할 수 있다.  
 * Role : 
+
+(6) Address Sanitizer
+ Address Sanitizer(ASan)는 C/C++ 프로그램에서 사용 후 사용하지 않는 버그와 범위를 벗어난 버그를 감지하는 빠른 메모리 오류 감지기다. 컴파일 시간 계측기를 사용하여 실행 중에 모든 읽기 및 쓰기를 확인한다. 또한 런타임 부분은 동적으로 할당된 메모리를 확인할 수 있는 malloc 및 free 함수를 대체한다.
+ asan-maintenance라는 메타 버그는 ASan에서 발견된 모든 버그를 추적하기 위해 유지 관리된다.
+
+ 6-1)아티팩트 빌드 다운로드(Downloading artifact builds)
+  Linux 및 Windows 사용자의 경우, 주소 소독기를 사용하여 Firefox 빌드를 얻는 가장 쉬운 방법은 모질라 중심의 빌드로 지속적인 통합을 다운로드하는 것이다(최소 매일 업데이트):
+ • mozilla-central에 최적화된 빌드 : Linux | Windows(테스트에 권장)
+ • mozilla-central 디버깅 빌드 : Linux | Windows(최적화된 빌드가 제대로 작동하지 않는 경우 디버깅에 권장)
+
+  퍼징 팀(fuzzing team)은 또한 이러한 빌드와 기타 많은 CI 빌드를 다운로드할 수 있는 fuzzfetch라는 도구를 제공한다. 이 도구를 사용하면 빌드를 훨씬 쉽게 다운로드하고 풀 수 있으며 퍼징뿐만 아니라 CI 빌드를 다운로드해야 하는 모든 용도로 사용할 수 있다.
+  fuzzfetch는 Github 또는 via pip을 통해 다운로드할 수 있다.
+
+   $ python -m fuzzfetch --asan -n firefox-asan
+
+  위에서 언급한 최적화된 Linux ASan 빌드를 firefox-asan이라는 디렉토리로 압축 해제한다. --debug 및 --os 스위치를 사용하여 위에 나열된 다른 변형을 가져올 수 있다.
+
+ 6-2) Creating Try builds
+  어떤 이유로 이전 섹션에서 언급한 사전 빌드된 바이너리를 사용할 수 없는 경우(예: Linux가 아닌 빌드를 원하거나 패치를 테스트해야 하는 경우), Firefox를 직접 빌드하거나 (다음 섹션 참조) :ref:'Pushing to Try 서버 <Pushing>'을 사용하여 사용자 지정 빌드를 만들 수 있다. 시도하려면 L1 커밋 액세스가 필요하다. 아직 이 액세스 권한이 없는 경우 액세스를 요청할 수 있다(요구 사항은 Mozilla 커밋 작성자 및 Mozilla 커밋 액세스 정책 참조).
+
+  이 트리에는 빌드로 만들기 위한 여러 mozconfig 파일이 포함되어 있다("nightly-asan" 파일은 릴리스 빌드를 생성하는 반면, "debug-asan" 파일은 디버그+opt 빌드를 생성한다). Linux 빌드의 경우, 적절한 구성 파일이 Linux64-asan 대상에서 사용된다. macOS 또는 Windows 빌드를 만들려면 시도하기 전에 일반 디버그 구성 위에 적절한 구성 파일을 복사해야 한다.
+ 
+  예를 들어: cp browser/config/mozconfigs/macosx64/debug-asan browser/config/mozconfigs/macosx64/debug
+
+  그런 다음 일반적인 방식으로 시도를 누른 다음 빌드가 완료되면 적절한 빌드 아티팩트를 다운로드할 수 있습니다.
+
+ 6-3) Creating local builds on Windows
+  Windows에서는 64-bit 빌드에서만 ASan이 지원된다.
+  mach bootstrap을 실행하여 ~/.mozbuild 디렉토리에서 업데이트된 clang-cl을 얻은 다음 다음 :ref:'mozconfig < 빌드 옵션 구성>'을 사용한다:
+
+  ac_add_options --enable-address-sanitizer
+  ac_add_options --disable-jemalloc
+
+  export LDFLAGS="clang_rt.asan_dynamic-x86_64.lib clang_rt.asan_dynamic_runtime_thunk-x86_64.lib"
+  CLANG_LIB_DIR="$(cd ~/.mozbuild/clang/lib/clang/*/lib/windows && pwd)"
+  export MOZ_CLANG_RT_ASAN_LIB_PATH="${CLANG_LIB_DIR}/clang_rt.asan_dynamic-x86_64.dll"
+  export PATH=$CLANG_LIB_DIR:$PATH
+
+  WinDbg에서 ASan 빌드를 실행하면 가짜 1차 액세스 위반 예외가 표시될 수 있다. 이러한 예외는 ASAN에서 creating shadow memory 페이지를 생성할 때 발생하며, 이것을 무시할 수 있다. 이러한 예외를 무시하려면 sxi av를 실행한다. (실제로 충돌해도 2차 액세스 위반 예외가 적용된다.)
+
+  Windows에서는 LeekSanitizer(LSAN)가 지원되지 않는다.
+
+ 6-4) Creating local builds on Linux or Mac
+  -전제 조건 구축
+   ·LLVM/Clang
+    ASAN 계측기는 LLVM 패스로 구현되어 Clang에 통합된다. Firefox를 편집할 수 있는 모든 Clang 버전은 ASAN 빌드에 필요한 모든 것을 갖추고 있다.
+
+  -Building Firefox
+   ·Getting the source
+    해당 수정본 또는 이후 수정본을 사용하려면 :ref: 'mozilla-central의 <Mercurial overview>의 복사품을 작성하기만 하면 된다.
+
+   ·빌드 구성 조정(Adjusting the build configuration)
+    mozilla-central 디렉토리에 다음 내용으로 빌드 구성 파일 mozconfig를 만든다:
+     # Combined .mozconfig file for ASan on Linux+Mac
+
+     mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/objdir-ff-asan
+
+     # Enable ASan specific code and build workarounds
+     ac_add_options --enable-address-sanitizer
+
+     # These three are required by ASan
+     ac_add_options --disable-jemalloc
+     ac_add_options --disable-crashreporter
+     ac_add_options --disable-elf-hack
+
+     # Keep symbols to symbolize ASan traces later
+     export MOZ_DEBUG_SYMBOLS=1
+     ac_add_options --enable-debug-symbols
+     ac_add_options --disable-install-strip
+
+     # Settings for an opt build (preferred)
+     # The -gline-tables-only ensures that all the necessary debug information for ASan
+     # is present, but the rest is stripped so the resulting binaries are smaller.
+     ac_add_options --enable-optimize="-O2 -gline-tables-only"
+     ac_add_options --disable-debug
+
+     # Settings for a debug+opt build
+     #ac_add_options --enable-optimize
+     #ac_add_options --enable-debug
+
+     # MacOSX only: Uncomment and adjust this path to match your SDK
+     # ac_add_options --with-macos-sdk=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk
+
+    browser/config/mozconfigs/linux64/nightly-asan(자동 테스트에 사용되는 Address Sanitizer 빌드에 사용되는 구성 파일)에서 볼 수 있듯이 이 파일이 필요할 수도 있다:
+     # ASan specific options on Linux
+     ac_add_options --enable-valgrind
+
+   ·빌드 프로세스 시작
+    이제 일반 ./mach build 명령을 사용하여 빌드 프로세스를 시작한다.
+
+   ·Firefox 시작
+    빌드가 완료된 후 디버거에서 실행할 수 있는 일반적인 옵션(gdb, lldb, rr 등)으로 ./mach run은 --disable-e10s 및 기타 옵션과 마찬가지로 정상적으로 작동한다.
+
+   ·자바스크립트 쉘만 구축하기(Building only the JavaScript shell)
+    전체 Firefox 빌드를 수행하는 대신 JavaScript shell만 빌드하려면 아래 빌드 스크립트가 도움이 될 것이다. 이 스크립트를 js/src/ 하위 디렉토리에서 실행하고 첫 번째 매개 변수로 디렉토리 이름을 전달한다. 그런 다음 빌드는 해당 이름의 새 하위 디렉토리에 생성된다.
+
+     #! /bin/sh
+
+     if [ -z $1 ] ; then
+          echo "usage: $0 <dirname>"
+     elif [ -d $1 ] ; then
+          echo "directory $1 already exists"
+     else
+          autoconf2.13
+          mkdir $1
+          cd $1
+          CC="clang" \
+          CXX="clang++" \
+          CFLAGS="-fsanitize=address" \
+          CXXFLAGS="-fsanitize=address" \
+          LDFLAGS="-fsanitize=address" \
+          ../configure --enable-debug --enable-optimize --enable-address-sanitizer --disable-jemalloc
+     fi
+
+  -Getting Symbols in Address Sanitizer Traces
+   기본적으로 ASAN 트레이스는 기호화되지 않고 binary/library와 메모리 오프셋만 인쇄한다. 기호가 포함된 더 유용한 트레이스를 얻으려면 두 가지 접근 방식이 있다.
+
+   ·Using the LLVM Symbolizer (recommended)
+    ··
