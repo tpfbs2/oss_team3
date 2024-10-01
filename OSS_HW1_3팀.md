@@ -101,13 +101,13 @@
   Windows에서는 64-bit 빌드에서만 ASan이 지원된다.
   mach bootstrap을 실행하여 ~/.mozbuild 디렉토리에서 업데이트된 clang-cl을 얻은 다음 다음 :ref:'mozconfig < 빌드 옵션 구성>'을 사용한다:
 
-  `ac_add_options --enable-address-sanitizer
-  ac_add_options --disable-jemalloc
+   ac_add_options --enable-address-sanitizer
+   ac_add_options --disable-jemalloc
 
-  export LDFLAGS="clang_rt.asan_dynamic-x86_64.lib clang_rt.asan_dynamic_runtime_thunk-x86_64.lib"
-  CLANG_LIB_DIR="$(cd ~/.mozbuild/clang/lib/clang/*/lib/windows && pwd)"
-  export MOZ_CLANG_RT_ASAN_LIB_PATH="${CLANG_LIB_DIR}/clang_rt.asan_dynamic-x86_64.dll"
-  export PATH=$CLANG_LIB_DIR:$PATH`
+   export LDFLAGS="clang_rt.asan_dynamic-x86_64.lib clang_rt.asan_dynamic_runtime_thunk-x86_64.lib"
+   CLANG_LIB_DIR="$(cd ~/.mozbuild/clang/lib/clang/*/lib/windows && pwd)"
+   export MOZ_CLANG_RT_ASAN_LIB_PATH="${CLANG_LIB_DIR}/clang_rt.asan_dynamic-x86_64.dll"
+   export PATH=$CLANG_LIB_DIR:$PATH
   
   WinDbg에서 ASan 빌드를 실행하면 가짜 1차 액세스 위반 예외가 표시될 수 있다. 이러한 예외는 ASAN에서 creating shadow memory 페이지를 생성할 때 발생하며, 이것을 무시할 수 있다. 이러한 예외를 무시하려면 sxi av를 실행한다. (실제로 충돌해도 2차 액세스 위반 예외가 적용된다.)
 
