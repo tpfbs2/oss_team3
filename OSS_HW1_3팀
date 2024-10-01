@@ -66,4 +66,5 @@ Firefox 40 이후부터는 선택한 스타일 시트를 새 탭에서 열 수 �
    3. 접근성 기능을 전혀 사용하지 않으려면 구성편집기(Configuration Editor, Config)를 사용하여 환경설정 devtools.accessibility.enabled을 False로 설정하면 됨. 이를 사용할 시, 앞서 언급한 접근성 검사기 활성화 방법을 수행하지 않게 됨.
 
   5-2) Features of the Accessibility panel 접근성 패널의 기능
-   
+   ![accessibility-inspector-tabbing_order](https://github.com/user-attachments/assets/2057f6cb-f2ad-4736-9568-202630c2addc)
+
