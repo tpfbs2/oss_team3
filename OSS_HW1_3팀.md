@@ -84,7 +84,7 @@
   퍼징 팀(fuzzing team)은 또한 이러한 빌드와 기타 많은 CI 빌드를 다운로드할 수 있는 fuzzfetch라는 도구를 제공한다. 이 도구를 사용하면 빌드를 훨씬 쉽게 다운로드하고 풀 수 있으며 퍼징뿐만 아니라 CI 빌드를 다운로드해야 하는 모든 용도로 사용할 수 있다.
   fuzzfetch는 Github 또는 via pip을 통해 다운로드할 수 있다.
 
-   '$ python -m fuzzfetch --asan -n firefox-asan'<
+   `$ python -m fuzzfetch --asan -n firefox-asan`
 
   위에서 언급한 최적화된 Linux ASan 빌드를 firefox-asan이라는 디렉토리로 압축 해제한다. --debug 및 --os 스위치를 사용하여 위에 나열된 다른 변형을 가져올 수 있다.
 
@@ -101,13 +101,13 @@
   Windows에서는 64-bit 빌드에서만 ASan이 지원된다.
   mach bootstrap을 실행하여 ~/.mozbuild 디렉토리에서 업데이트된 clang-cl을 얻은 다음 다음 :ref:'mozconfig < 빌드 옵션 구성>'을 사용한다:
 
-  ac_add_options --enable-address-sanitizer
+  `ac_add_options --enable-address-sanitizer
   ac_add_options --disable-jemalloc
 
   export LDFLAGS="clang_rt.asan_dynamic-x86_64.lib clang_rt.asan_dynamic_runtime_thunk-x86_64.lib"
   CLANG_LIB_DIR="$(cd ~/.mozbuild/clang/lib/clang/*/lib/windows && pwd)"
   export MOZ_CLANG_RT_ASAN_LIB_PATH="${CLANG_LIB_DIR}/clang_rt.asan_dynamic-x86_64.dll"
-  export PATH=$CLANG_LIB_DIR:$PATH
+  export PATH=$CLANG_LIB_DIR:$PATH`
 
   WinDbg에서 ASan 빌드를 실행하면 가짜 1차 액세스 위반 예외가 표시될 수 있다. 이러한 예외는 ASAN에서 creating shadow memory 페이지를 생성할 때 발생하며, 이것을 무시할 수 있다. 이러한 예외를 무시하려면 sxi av를 실행한다. (실제로 충돌해도 2차 액세스 위반 예외가 적용된다.)
 
@@ -124,7 +124,7 @@
 
    ·빌드 구성 조정(Adjusting the build configuration)
     mozilla-central 디렉토리에 다음 내용으로 빌드 구성 파일 mozconfig를 만든다:
-     # Combined .mozconfig file for ASan on Linux+Mac
+     `# Combined .mozconfig file for ASan on Linux+Mac
 
      mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/objdir-ff-asan
 
@@ -156,7 +156,7 @@
 
     browser/config/mozconfigs/linux64/nightly-asan(자동 테스트에 사용되는 Address Sanitizer 빌드에 사용되는 구성 파일)에서 볼 수 있듯이 이 파일이 필요할 수도 있다:
      # ASan specific options on Linux
-     ac_add_options --enable-valgrind
+     ac_add_options --enable-valgrind`
 
    ·빌드 프로세스 시작
     이제 일반 ./mach build 명령을 사용하여 빌드 프로세스를 시작한다.
@@ -167,7 +167,7 @@
    ·자바스크립트 쉘만 구축하기(Building only the JavaScript shell)
     전체 Firefox 빌드를 수행하는 대신 JavaScript shell만 빌드하려면 아래 빌드 스크립트가 도움이 될 것이다. 이 스크립트를 js/src/ 하위 디렉토리에서 실행하고 첫 번째 매개 변수로 디렉토리 이름을 전달한다. 그런 다음 빌드는 해당 이름의 새 하위 디렉토리에 생성된다.
 
-     #! /bin/sh
+     `#! /bin/sh
 
      if [ -z $1 ] ; then
           echo "usage: $0 <dirname>"
@@ -183,7 +183,7 @@
           CXXFLAGS="-fsanitize=address" \
           LDFLAGS="-fsanitize=address" \
           ../configure --enable-debug --enable-optimize --enable-address-sanitizer --disable-jemalloc
-     fi
+     fi`
 
   -Getting Symbols in Address Sanitizer Traces
    기본적으로 ASAN 트레이스는 기호화되지 않고 binary/library와 메모리 오프셋만 인쇄한다. 기호가 포함된 더 유용한 트레이스를 얻으려면 두 가지 접근 방식이 있다.
