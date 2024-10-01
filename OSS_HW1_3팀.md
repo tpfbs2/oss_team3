@@ -70,7 +70,13 @@
 > #### Features of the Accessibility panel 접근성 패널의 기능
    ![accessibility-inspector-tabbing_order](https://github.com/user-attachments/assets/2057f6cb-f2ad-4736-9568-202630c2addc)
 &nbsp; 왼쪽에는 현재 페이지의 접근성 트리에 있는 모든 항목을 나타내는 트리 다이어그램이 나타나있다. 중첩된 항목이 있는 경우, 화살표를 클릭하여 세부 항목을 확인할 수 있다.  
-* Role : 
+* Role : 해당 항목이 페이지에서 수행하는 역할을 나타낸다. (예) `pushbutton` 또는 `footer`) 이러한 역할은 브라우저에서 제공하는 기본 역할이거나 WAI-ARIA를 통해 브라우저에 부여된 역할일 수 있다.
+* Name : 해당 항목이 페이지에서 보여지는 이름을 나타낸다. name은 요소에 따라 달라진다. 텍스트(text) 요소의 경우 `textContent`로 표현되고, 양식(form) 요소의 경우 관련된 레이블(lable)의 내용으로 표현된다.
+&nbsp; 오른쪽에는 현재 선택한 항목에 대한 자세한 정보를 나타낸다. 나열된 속성은 다음과 같다.
+* Name : 위에서 설명한 내용과 동일
+* Role : 위에서 설명한 내용과 동일
+* actions : 항목에서 수행할 수 있는 작업 목록을 나타낸다. 예를 들어 Push 버튼에는 "누르기(Press)"가 나열되고, Link에는 "점프(Jump)"가 나열된다.
+* Value : 항목의 값을 나타내고, 항목의 유형에 따라 다른 의미를 가진다. 예를 들어 form input(role:entry)은 input에 입력된 모든 항목의 Value을 갖지만, Link 값은 <a> 요소의 href 속성에 있는 URL을 Value로 가진다. 
 
 ### (6) Address Sanitizer
  Address Sanitizer(ASan)는 C/C++ 프로그램에서 사용 후 사용하지 않는 버그와 범위를 벗어난 버그를 감지하는 빠른 메모리 오류 감지기다. 컴파일 시간 계측기를 사용하여 실행 중에 모든 읽기 및 쓰기를 확인한다. 또한 런타임 부분은 동적으로 할당된 메모리를 확인할 수 있는 ![malloc] 및 ![free] 함수를 대체한다.
