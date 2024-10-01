@@ -84,7 +84,7 @@
   퍼징 팀(fuzzing team)은 또한 이러한 빌드와 기타 많은 CI 빌드를 다운로드할 수 있는 fuzzfetch라는 도구를 제공한다. 이 도구를 사용하면 빌드를 훨씬 쉽게 다운로드하고 풀 수 있으며 퍼징뿐만 아니라 CI 빌드를 다운로드해야 하는 모든 용도로 사용할 수 있다.
   fuzzfetch는 Github 또는 via pip을 통해 다운로드할 수 있다.
 
-   '$ python -m fuzzfetch --asan -n firefox-asan' <
+   '$ python -m fuzzfetch --asan -n firefox-asan'<
 
   위에서 언급한 최적화된 Linux ASan 빌드를 firefox-asan이라는 디렉토리로 압축 해제한다. --debug 및 --os 스위치를 사용하여 위에 나열된 다른 변형을 가져올 수 있다.
 
