@@ -108,7 +108,7 @@
   CLANG_LIB_DIR="$(cd ~/.mozbuild/clang/lib/clang/*/lib/windows && pwd)"
   export MOZ_CLANG_RT_ASAN_LIB_PATH="${CLANG_LIB_DIR}/clang_rt.asan_dynamic-x86_64.dll"
   export PATH=$CLANG_LIB_DIR:$PATH`
-
+  
   WinDbg에서 ASan 빌드를 실행하면 가짜 1차 액세스 위반 예외가 표시될 수 있다. 이러한 예외는 ASAN에서 creating shadow memory 페이지를 생성할 때 발생하며, 이것을 무시할 수 있다. 이러한 예외를 무시하려면 sxi av를 실행한다. (실제로 충돌해도 2차 액세스 위반 예외가 적용된다.)
 
   Windows에서는 LeekSanitizer(LSAN)가 지원되지 않는다.
@@ -124,7 +124,7 @@
 
    ·빌드 구성 조정(Adjusting the build configuration)
     mozilla-central 디렉토리에 다음 내용으로 빌드 구성 파일 mozconfig를 만든다:
-     `# Combined .mozconfig file for ASan on Linux+Mac
+   `# Combined .mozconfig file for ASan on Linux+Mac
 
      mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/objdir-ff-asan
 
@@ -167,7 +167,7 @@
    ·자바스크립트 쉘만 구축하기(Building only the JavaScript shell)
     전체 Firefox 빌드를 수행하는 대신 JavaScript shell만 빌드하려면 아래 빌드 스크립트가 도움이 될 것이다. 이 스크립트를 js/src/ 하위 디렉토리에서 실행하고 첫 번째 매개 변수로 디렉토리 이름을 전달한다. 그런 다음 빌드는 해당 이름의 새 하위 디렉토리에 생성된다.
 
-    ` #! /bin/sh
+    `#! /bin/sh
 
      if [ -z $1 ] ; then
           echo "usage: $0 <dirname>"
