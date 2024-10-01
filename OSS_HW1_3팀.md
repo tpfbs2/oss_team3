@@ -60,10 +60,10 @@
   * 개발자 도구 상자(Developer Tools toolbox)에서 접근성(Accessibility) 선택
   * 기본 브라우저 창에서 마우스 오른쪽 버튼을 클릭하고 Context 메뉴에서 접근성 속성 검사(Inspect Accessibiliy Properties) 선택
   * `:doc:Page Inspector <../page_inspector/index>`의 HTML 창에서 항목을 마우스 오른쪽 버튼으로 클릭하고 Context 메뉴에서 접근성 속성 표시(Show Accessibility Properties)를 선택
-  활성화 되면 개발자 도구 상자를 닫을 때까지 접근성 엔진이 계속 실행됨
+  활성화 되면 개발자 도구 상자를 닫을 때까지 접근성 엔진이 계속 실행된다.
 
 <NOTE!>
-  * 접근성 엔진은 접근성 기능을 켜면 백그라운드에서 실행되며, 이 기능을 활성화 시킬 시 `:doc:Memory <../memory/index>` 와 `:doc:Performance <../performance/index>`같은 다른 패널의 매트릭과 전반적인 브라우저 성능에 약간의 영향을 미칠 수 있음. 
+  * 접근성 엔진은 접근성 기능을 켜면 백그라운드에서 실행되며, 이 기능을 활성화 시킬 시 다른 패널의 매트릭과 전반적인 브라우저 성능에 약간의 영향을 미칠 수 있음. 
   * 접근성 기능을 자동으로 활성화하지 않으려면 구성편집기(Configuration Editor, Config)를 사용하여 기본 설정 `devtools.accessibility.auto-init.enabled`을 `False`로 설정하면 됨.
   * 접근성 기능을 전혀 사용하지 않으려면 구성편집기(Configuration Editor, Config)를 사용하여 환경설정 `devtools.accessibility.enabled`을 `False`로 설정하면 됨. 이를 사용할 시, 앞서 언급한 접근성 검사기 활성화 방법을 수행하지 않게 됨.
 
@@ -86,8 +86,12 @@
 * childCount : 접근성 트리 계층에서 현재 항목의 하위 항목의 수를 나타낸다.
 * indexInParent : 모체에서 하위 항목의 번호를 나타내는 인덱스 값이다. 항목이 상위 항목의 첫 번째 항목인 경우 0의 값을 가지고 두 번째 항목인 경우 1의 값을 가진다.
 * stares : 현재 항목에 적용할 수 있는 다양한 accessibility-relevant states 목록을 나타낸다. 예를 들어, 한 데모(demo)의 링크(link) 중에 하나에는 focusable, linked, selectable text, opaque, enabled, and sensitive 등이 존재한다. 
-* relations : 항목에 적용되는 모든 accessibility-relevant attributes 목록을 나타낸다. 
-* attributes
+* relations : 항목에 적용되는 모든 accessibility-relevant relationships 목록을 나타낸다. 예를 들어 entry 항목은 label 항목과 "labelled by" 관계를 entry 항목과 "label for" 관계를 가질 수 있다. 
+* attributes : 항목에 적용되는 모든 accessibility-relevant attributes 목록을 나타낸다. margin-left 및 문자 들여쓰기와 같은 스타일 관련 속성과 접근성 정보와 관련된 유용한 상태들(예: 드래그 가능 여부 또는 레벨, 예를 들어 제목인 경우 제목의 레벨이 무엇인지)이 포함될 수 있다.
+
+  
+<NOTE!>  
+&nbsp; 노출된 정보는 모든 플랫폼에서 동일하게 나타나며, Inspector는 플랫폼의 접근성 계층의 정보가 아닌 Gecko의 접근성 트리를 노출시킨다. 
 
 ### (6) Address Sanitizer
  Address Sanitizer(ASan)는 C/C++ 프로그램에서 사용 후 사용하지 않는 버그와 범위를 벗어난 버그를 감지하는 빠른 메모리 오류 감지기다. 컴파일 시간 계측기를 사용하여 실행 중에 모든 읽기 및 쓰기를 확인한다. 또한 런타임 부분은 동적으로 할당된 메모리를 확인할 수 있는 `malloc` 및 `free` 함수를 대체한다.
