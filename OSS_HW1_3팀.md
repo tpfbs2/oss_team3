@@ -72,11 +72,11 @@
 &nbsp; 왼쪽에는 현재 페이지의 접근성 트리에 있는 모든 항목을 나타내는 트리 다이어그램이 나타나있다. 중첩된 항목이 있는 경우, 화살표를 클릭하여 세부 항목을 확인할 수 있다.  
 * Role : 
 
-(6) Address Sanitizer
+### (6) Address Sanitizer
  Address Sanitizer(ASan)는 C/C++ 프로그램에서 사용 후 사용하지 않는 버그와 범위를 벗어난 버그를 감지하는 빠른 메모리 오류 감지기다. 컴파일 시간 계측기를 사용하여 실행 중에 모든 읽기 및 쓰기를 확인한다. 또한 런타임 부분은 동적으로 할당된 메모리를 확인할 수 있는 ![malloc] 및 ![free] 함수를 대체한다.
  asan-maintenance라는 메타 버그는 ASan에서 발견된 모든 버그를 추적하기 위해 유지 관리된다.
 
- 6-1)아티팩트 빌드 다운로드(Downloading artifact builds)
+> #### 아티팩트 빌드 다운로드(Downloading artifact builds)
   Linux 및 Windows 사용자의 경우, 주소 소독기를 사용하여 Firefox 빌드를 얻는 가장 쉬운 방법은 모질라 중심의 빌드로 지속적인 통합을 다운로드하는 것이다(최소 매일 업데이트):
  • mozilla-central에 최적화된 빌드 : Linux | Windows(테스트에 권장)
  • mozilla-central 디버깅 빌드 : Linux | Windows(최적화된 빌드가 제대로 작동하지 않는 경우 디버깅에 권장)
@@ -84,11 +84,11 @@
   퍼징 팀(fuzzing team)은 또한 이러한 빌드와 기타 많은 CI 빌드를 다운로드할 수 있는 fuzzfetch라는 도구를 제공한다. 이 도구를 사용하면 빌드를 훨씬 쉽게 다운로드하고 풀 수 있으며 퍼징뿐만 아니라 CI 빌드를 다운로드해야 하는 모든 용도로 사용할 수 있다.
   fuzzfetch는 Github 또는 via pip을 통해 다운로드할 수 있다.
 
-   $ python -m fuzzfetch --asan -n firefox-asan
+   '$ python -m fuzzfetch --asan -n firefox-asan' <
 
   위에서 언급한 최적화된 Linux ASan 빌드를 firefox-asan이라는 디렉토리로 압축 해제한다. --debug 및 --os 스위치를 사용하여 위에 나열된 다른 변형을 가져올 수 있다.
 
- 6-2) Creating Try builds
+ > #### Creating Try builds
   어떤 이유로 이전 섹션에서 언급한 사전 빌드된 바이너리를 사용할 수 없는 경우(예: Linux가 아닌 빌드를 원하거나 패치를 테스트해야 하는 경우), Firefox를 직접 빌드하거나 (다음 섹션 참조) :ref:'Pushing to Try 서버 <Pushing>'을 사용하여 사용자 지정 빌드를 만들 수 있다. 시도하려면 L1 커밋 액세스가 필요하다. 아직 이 액세스 권한이 없는 경우 액세스를 요청할 수 있다(요구 사항은 Mozilla 커밋 작성자 및 Mozilla 커밋 액세스 정책 참조).
 
   이 트리에는 빌드로 만들기 위한 여러 mozconfig 파일이 포함되어 있다("nightly-asan" 파일은 릴리스 빌드를 생성하는 반면, "debug-asan" 파일은 디버그+opt 빌드를 생성한다). Linux 빌드의 경우, 적절한 구성 파일이 Linux64-asan 대상에서 사용된다. macOS 또는 Windows 빌드를 만들려면 시도하기 전에 일반 디버그 구성 위에 적절한 구성 파일을 복사해야 한다.
@@ -97,7 +97,7 @@
 
   그런 다음 일반적인 방식으로 시도를 누른 다음 빌드가 완료되면 적절한 빌드 아티팩트를 다운로드할 수 있습니다.
 
- 6-3) Creating local builds on Windows
+ > #### Creating local builds on Windows
   Windows에서는 64-bit 빌드에서만 ASan이 지원된다.
   mach bootstrap을 실행하여 ~/.mozbuild 디렉토리에서 업데이트된 clang-cl을 얻은 다음 다음 :ref:'mozconfig < 빌드 옵션 구성>'을 사용한다:
 
@@ -113,7 +113,7 @@
 
   Windows에서는 LeekSanitizer(LSAN)가 지원되지 않는다.
 
- 6-4) Creating local builds on Linux or Mac
+ > #### Creating local builds on Linux or Mac
   -전제 조건 구축
    ·LLVM/Clang
     ASAN 계측기는 LLVM 패스로 구현되어 Clang에 통합된다. Firefox를 편집할 수 있는 모든 Clang 버전은 ASAN 빌드에 필요한 모든 것을 갖추고 있다.
