@@ -80,7 +80,7 @@
 * Value : 항목의 값을 나타내고, 항목의 유형에 따라 다른 의미를 가진다. 예를 들어 form input(role:entry)은 input에 입력된 모든 항목의 Value을 갖지만, Link 값은 <a> 요소의 href 속성에 있는 URL을 Value로 가진다. 
 
 ### (6) Address Sanitizer
- Address Sanitizer(ASan)는 C/C++ 프로그램에서 사용 후 사용하지 않는 버그와 범위를 벗어난 버그를 감지하는 빠른 메모리 오류 감지기다. 컴파일 시간 계측기를 사용하여 실행 중에 모든 읽기 및 쓰기를 확인한다. 또한 런타임 부분은 동적으로 할당된 메모리를 확인할 수 있는 ![malloc] 및 ![free] 함수를 대체한다.
+ Address Sanitizer(ASan)는 C/C++ 프로그램에서 사용 후 사용하지 않는 버그와 범위를 벗어난 버그를 감지하는 빠른 메모리 오류 감지기다. 컴파일 시간 계측기를 사용하여 실행 중에 모든 읽기 및 쓰기를 확인한다. 또한 런타임 부분은 동적으로 할당된 메모리를 확인할 수 있는 `malloc` 및 `free` 함수를 대체한다.
  asan-maintenance라는 메타 버그는 ASan에서 발견된 모든 버그를 추적하기 위해 유지 관리된다.
 
 > #### 아티팩트 빌드 다운로드(Downloading artifact builds)
@@ -91,7 +91,7 @@
   퍼징 팀(fuzzing team)은 또한 이러한 빌드와 기타 많은 CI 빌드를 다운로드할 수 있는 fuzzfetch라는 도구를 제공한다. 이 도구를 사용하면 빌드를 훨씬 쉽게 다운로드하고 풀 수 있으며 퍼징뿐만 아니라 CI 빌드를 다운로드해야 하는 모든 용도로 사용할 수 있다.
   fuzzfetch는 Github 또는 via pip을 통해 다운로드할 수 있다.
 
-   `$ python -m fuzzfetch --asan -n firefox-asan`
+   $ python -m fuzzfetch --asan -n firefox-asan
 
   위에서 언급한 최적화된 Linux ASan 빌드를 firefox-asan이라는 디렉토리로 압축 해제한다. --debug 및 --os 스위치를 사용하여 위에 나열된 다른 변형을 가져올 수 있다.
 
@@ -131,7 +131,8 @@
 
    ·빌드 구성 조정(Adjusting the build configuration)
     mozilla-central 디렉토리에 다음 내용으로 빌드 구성 파일 mozconfig를 만든다:
-   `# Combined .mozconfig file for ASan on Linux+Mac
+   
+     # Combined .mozconfig file for ASan on Linux+Mac
 
      mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/objdir-ff-asan
 
@@ -163,7 +164,7 @@
 
     browser/config/mozconfigs/linux64/nightly-asan(자동 테스트에 사용되는 Address Sanitizer 빌드에 사용되는 구성 파일)에서 볼 수 있듯이 이 파일이 필요할 수도 있다:
      # ASan specific options on Linux
-     ac_add_options --enable-valgrind`
+     ac_add_options --enable-valgrind
 
    ·빌드 프로세스 시작
     이제 일반 ./mach build 명령을 사용하여 빌드 프로세스를 시작한다.
@@ -174,7 +175,7 @@
    ·자바스크립트 쉘만 구축하기(Building only the JavaScript shell)
     전체 Firefox 빌드를 수행하는 대신 JavaScript shell만 빌드하려면 아래 빌드 스크립트가 도움이 될 것이다. 이 스크립트를 js/src/ 하위 디렉토리에서 실행하고 첫 번째 매개 변수로 디렉토리 이름을 전달한다. 그런 다음 빌드는 해당 이름의 새 하위 디렉토리에 생성된다.
 
-    `#! /bin/sh
+    #! /bin/sh
 
      if [ -z $1 ] ; then
           echo "usage: $0 <dirname>"
@@ -190,7 +191,7 @@
           CXXFLAGS="-fsanitize=address" \
           LDFLAGS="-fsanitize=address" \
           ../configure --enable-debug --enable-optimize --enable-address-sanitizer --disable-jemalloc
-     fi`
+     fi
 
   -Getting Symbols in Address Sanitizer Traces
    기본적으로 ASAN 트레이스는 기호화되지 않고 binary/library와 메모리 오프셋만 인쇄한다. 기호가 포함된 더 유용한 트레이스를 얻으려면 두 가지 접근 방식이 있다.
@@ -199,34 +200,34 @@
     LLVM은 심볼화된 트레이스를 즉시 출력하는 데 ASAN이 쉽게 사용할 symbolizer binary와 함께 제공된다. 이를 사용하려면 프로세스를 실행하기 전에 llvm-symbolizer binary의 위치를 반영하도록 환경 변수 ASAN_Symbolizer_PATH를 설정하기만 하면 된다. 이 프로그램은 일반적으로 LLVM 배포판에 포함된다. 심볼이 없는 스택은 아래를 참조하여 후처리할 수도 있다.
     
    #### <Warning Note>
-    **Warning:** : OS X에서 콘텐츠 샌드박스는 symbolizer가 실행되지 않도록 한다. 콘텐츠 프로세스에서 ASan 출력에서 lvm-symbolizer를 사용하려면 콘텐츠 샌드박스를 비활성화해야 한다. 이 작업은 실행 환경에서 `MOZ_DISALE_CONTONT_SANDBOX=1`을 설정하여 수행할 수 있다. .mozconfig에 설정해도 아무런 영향을 미치지 않는다.
+    Warning: : OS X에서 콘텐츠 샌드박스는 symbolizer가 실행되지 않도록 한다. 콘텐츠 프로세스에서 ASan 출력에서 lvm-symbolizer를 사용하려면 콘텐츠 샌드박스를 비활성화해야 한다. 이 작업은 실행 환경에서 `MOZ_DISALE_CONTONT_SANDBOX=1`을 설정하여 수행할 수 있다. .mozconfig에 설정해도 아무런 영향을 미치지 않는다.
     
     Post-Processing Traces with asan_symbolize.py
-     llvm-symbolizer binary를 사용하는 대신, 종종 LLVM 배포에 포함되는 LLVM(``$LLVM_HOME/projects/compiler-rt/lib/asan/scripts/asan_symbolize.py``)과 함께 제공되는 ``asan_symbolize.py`` 스크립트를 통해 pipe the output할 수도 있습니다. 단점은 스크립트가 심볼을 얻으려면 ``addr2line``을 사용해야 하므로 모든 라이브러리가 메모리에 로드되어야 한다는 것입니다('libxul'을 포함하여 약간의 시간이 소요됩니다).
+     llvm-symbolizer binary를 사용하는 대신, 종종 LLVM 배포에 포함되는 LLVM(`$LLVM_HOME/projects/compiler-rt/lib/asan/scripts/asan_symbolize.py`)과 함께 제공되는 `asan_symbolize.py` 스크립트를 통해 pipe the output할 수도 있습니다. 단점은 스크립트가 심볼을 얻으려면 `addr2line`을 사용해야 하므로 모든 라이브러리가 메모리에 로드되어야 한다는 것입니다('libxul'을 포함하여 약간의 시간이 소요됩니다).
 
      그러나 특정 상황에서는 이 스크립트를 사용하는 것이 합리적입니다. 예를 들어, 기호화되지 않은 추적을 받았거나 받은 경우에도 기호화되지 않은 추적을 생성한 원래 바이너리를 얻을 수 있다는 점을 고려할 때 스크립트를 사용하여 기호화된 추적으로 변환할 수 있습니다. 이러한 경우 스크립트가 작동하려면 추적의 경로가 실제 바이너리를 가리키는지 확인하거나 그에 따라 경로를 변경해야 합니다.
 
-     ``asan_symbolize.py`` 스크립트의 출력은 여전히 mangled되어 있으므로 나중에 ``c++filt``를 통해서도 pipe the output하는 것이 좋습니다.
+     `asan_symbolize.py` 스크립트의 출력은 여전히 mangled되어 있으므로 나중에 `c++filt`를 통해서도 pipe the output하는 것이 좋습니다.
 
    #### Troubleshooting / Known problems
     -여러 출력 파일을 생성할 때 -o를 지정할 수 없다(Cannot specify -o when generating multiple output files).
-     clang에서 "여러 출력 파일을 생성할 때 -o를 지정할 수 없습니다(cannot specify -o when generating multiple output files")"라는 오류가 발생하면 ``mozconfig``에서 ``elf-hack``을 비활성화하여 이 문제를 해결하라:
+     clang에서 "여러 출력 파일을 생성할 때 -o를 지정할 수 없습니다(cannot specify -o when generating multiple output files")"라는 오류가 발생하면 `mozconfig`에서 `elf-hack`을 비활성화하여 이 문제를 해결하라:
 
-   `ac_add_options --disable-elf-hack`
+   ac_add_options --disable-elf-hack
 
    -Optimized build
     -O2/-Os 및 ASan 문제가 해결되었으므로 Firefox에서 사용하는 일반 최적화는 문제없이 작동할 것이다. 최적화된 빌드는 거의 눈에 띄지 않는 속도 페널티만 있고 일반 디버그 빌드보다 훨씬 빠른 것으로 보인다.
     
     ./mach 실행 후 "AddressSanitizer: libc 인터셉터가 초기화됨"이 표시되지 않는다.
 
-   `$ ASAN_OPTIONS=verbosity=2 ./mach run`
+   $ ASAN_OPTIONS=verbosity=2 ./mach run
    
     대신 위의 명령 사용하라.
     
     개발자 모드로 전환하려면 관리자 사용자 이름 및 비밀번호"가 필요합니다
     개발자 모드를 활성화하십시오:
 
-   `$ /usr/sbin/DevToolsSecurity -enable`
+   $ /usr/sbin/DevToolsSecurity -enabl
    Developer mode is now enabled.
 
 
