@@ -54,7 +54,7 @@
 ### (5) Accessibility Inspector (접근성 검사기)
 &nbsp; 접근성 검사기는 접근성 트리를 통해 현재 페이지에서 보조 기술에 노출된 중요한 정보에 액세스할 수 있는 수단을 제공하는 기능으로, 누락되었거나 주의가 필요한 사항을 확인할 수 있다. 
 
-> ####  Accessibility Inspector 액세스 방법
+> ####  Accessibility Inspector (액세스 방법)
 &nbsp; 처음 다른 DevTools를 열게 되면 접근성 기능이 꺼져있기 때문에(단, 이미 다른 브라우저 탭에서 해당 기능을 켰거나, Firefox 접근성 엔진이 이미 활성화된 경우는 제외) 다음 중 하나의 방식을 수행함으로써 활성화시킬 수 있음. 
   * 도구(Tools)> 브라우저 도구(Browser Tools)에서 접근성(Accessibility) 선택
   * 개발자 도구 상자(Developer Tools toolbox)에서 접근성(Accessibility) 선택
@@ -67,7 +67,7 @@
   * 접근성 기능을 자동으로 활성화하지 않으려면 구성편집기(Configuration Editor, Config)를 사용하여 기본 설정 `devtools.accessibility.auto-init.enabled`을 `False`로 설정하면 됨.
   * 접근성 기능을 전혀 사용하지 않으려면 구성편집기(Configuration Editor, Config)를 사용하여 환경설정 `devtools.accessibility.enabled`을 `False`로 설정하면 됨. 이를 사용할 시, 앞서 언급한 접근성 검사기 활성화 방법을 수행하지 않게 됨.
 
-> #### Features of the Accessibility panel 접근성 패널의 기능
+> #### Features of the Accessibility panel (접근성 패널의 기능)
    ![accessibility-inspector-tabbing_order](https://github.com/user-attachments/assets/2057f6cb-f2ad-4736-9568-202630c2addc)
 &nbsp; 왼쪽에는 현재 페이지의 접근성 트리에 있는 모든 항목을 나타내는 트리 다이어그램이 나타나있다. 중첩된 항목이 있는 경우, 화살표를 클릭하여 세부 항목을 확인할 수 있다.  
 * Role : 해당 항목이 페이지에서 수행하는 역할을 나타낸다. (예) `pushbutton` 또는 `footer`) 이러한 역할은 브라우저에서 제공하는 기본 역할이거나 WAI-ARIA를 통해 브라우저에 부여된 역할일 수 있다.
