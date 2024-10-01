@@ -167,7 +167,7 @@
    ·자바스크립트 쉘만 구축하기(Building only the JavaScript shell)
     전체 Firefox 빌드를 수행하는 대신 JavaScript shell만 빌드하려면 아래 빌드 스크립트가 도움이 될 것이다. 이 스크립트를 js/src/ 하위 디렉토리에서 실행하고 첫 번째 매개 변수로 디렉토리 이름을 전달한다. 그런 다음 빌드는 해당 이름의 새 하위 디렉토리에 생성된다.
 
-     `#! /bin/sh
+    ` #! /bin/sh
 
      if [ -z $1 ] ; then
           echo "usage: $0 <dirname>"
