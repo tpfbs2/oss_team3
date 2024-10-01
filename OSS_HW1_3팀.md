@@ -196,4 +196,42 @@
    기본적으로 ASAN 트레이스는 기호화되지 않고 binary/library와 메모리 오프셋만 인쇄한다. 기호가 포함된 더 유용한 트레이스를 얻으려면 두 가지 접근 방식이 있다.
 
    ·Using the LLVM Symbolizer (recommended)
-    ··
+    LLVM은 심볼화된 트레이스를 즉시 출력하는 데 ASAN이 쉽게 사용할 symbolizer binary와 함께 제공된다. 이를 사용하려면 프로세스를 실행하기 전에 llvm-symbolizer binary의 위치를 반영하도록 환경 변수 ASAN_Symbolizer_PATH를 설정하기만 하면 된다. 이 프로그램은 일반적으로 LLVM 배포판에 포함된다. 심볼이 없는 스택은 아래를 참조하여 후처리할 수도 있다.
+    
+   #### <Warning Note>
+    **Warning:** : OS X에서 콘텐츠 샌드박스는 symbolizer가 실행되지 않도록 한다. 콘텐츠 프로세스에서 ASan 출력에서 lvm-symbolizer를 사용하려면 콘텐츠 샌드박스를 비활성화해야 한다. 이 작업은 실행 환경에서 `MOZ_DISALE_CONTONT_SANDBOX=1`을 설정하여 수행할 수 있다. .mozconfig에 설정해도 아무런 영향을 미치지 않는다.
+    
+    Post-Processing Traces with asan_symbolize.py
+     llvm-symbolizer binary를 사용하는 대신, 종종 LLVM 배포에 포함되는 LLVM(``$LLVM_HOME/projects/compiler-rt/lib/asan/scripts/asan_symbolize.py``)과 함께 제공되는 ``asan_symbolize.py`` 스크립트를 통해 pipe the output할 수도 있습니다. 단점은 스크립트가 심볼을 얻으려면 ``addr2line``을 사용해야 하므로 모든 라이브러리가 메모리에 로드되어야 한다는 것입니다('libxul'을 포함하여 약간의 시간이 소요됩니다).
+
+     그러나 특정 상황에서는 이 스크립트를 사용하는 것이 합리적입니다. 예를 들어, 기호화되지 않은 추적을 받았거나 받은 경우에도 기호화되지 않은 추적을 생성한 원래 바이너리를 얻을 수 있다는 점을 고려할 때 스크립트를 사용하여 기호화된 추적으로 변환할 수 있습니다. 이러한 경우 스크립트가 작동하려면 추적의 경로가 실제 바이너리를 가리키는지 확인하거나 그에 따라 경로를 변경해야 합니다.
+
+     ``asan_symbolize.py`` 스크립트의 출력은 여전히 mangled되어 있으므로 나중에 ``c++filt``를 통해서도 pipe the output하는 것이 좋습니다.
+
+   #### Troubleshooting / Known problems
+    -여러 출력 파일을 생성할 때 -o를 지정할 수 없다(Cannot specify -o when generating multiple output files).
+     clang에서 "여러 출력 파일을 생성할 때 -o를 지정할 수 없습니다(cannot specify -o when generating multiple output files")"라는 오류가 발생하면 ``mozconfig``에서 ``elf-hack``을 비활성화하여 이 문제를 해결하라:
+     ::
+
+   ac_add_options --disable-elf-hack
+
+   -Optimized build
+    -O2/-Os 및 ASan 문제가 해결되었으므로 Firefox에서 사용하는 일반 최적화는 문제없이 작동할 것이다. 최적화된 빌드는 거의 눈에 띄지 않는 속도 페널티만 있고 일반 디버그 빌드보다 훨씬 빠른 것으로 보인다.
+    
+    ./mach 실행 후 "AddressSanitizer: libc 인터셉터가 초기화됨"이 표시되지 않는다.
+    
+::
+
+   $ ASAN_OPTIONS=verbosity=2 ./mach run
+   
+    대신 위의 명령 사용하라.
+    
+    개발자 모드로 전환하려면 관리자 사용자 이름 및 비밀번호"가 필요합니다
+    개발자 모드를 활성화하십시오:
+    ::
+
+   $ /usr/sbin/DevToolsSecurity -enable
+   Developer mode is now enabled.
+
+
+··
