@@ -78,6 +78,15 @@
 * Role : 위에서 설명한 내용과 동일
 * actions : 항목에서 수행할 수 있는 작업 목록을 나타낸다. 예를 들어 Push 버튼에는 "누르기(Press)"가 나열되고, Link에는 "점프(Jump)"가 나열된다.
 * Value : 항목의 값을 나타내고, 항목의 유형에 따라 다른 의미를 가진다. 예를 들어 form input(role:entry)은 input에 입력된 모든 항목의 Value을 갖지만, Link 값은 <a> 요소의 href 속성에 있는 URL을 Value로 가진다. 
+* DOMNode : 접근성 트리의 항목이 나타내는 DOM 노드의 유형을 나타낸다. `target`아이콘을 클릭하여 `:doc:`Page Inspector <../page_inspector/index>`에서 노드를 선택할 수 있다. 이때, `target` 아이콘 위에 마우스를 놓으면 다음과 같이 page content에서 DOMNode가 강조표시된다.
+   ![dom-node-target-icon](https://github.com/user-attachments/assets/eb078720-bd09-469d-90c2-c0ed1b5932b9)
+* description : 일반적으로 제목 속성(title attribute)의 내용에 따라 요소에 대한 추가 설명을 제공한다.
+* keyboardShortcut : `accessKey`에서 지정한 대로 요소를 활성화하는 데 사용할 수 있는 키보드바로가기 기능이다.
+* childCount : 접근성 트리 계층에서 현재 항목의 하위 항목의 수를 나타낸다.
+* indexInParent : 모체에서 하위 항목의 번호를 나타내는 인덱스 값이다. 항목이 상위 항목의 첫 번째 항목인 경우 0의 값을 가지고 두 번째 항목인 경우 1의 값을 가진다.
+* stares : 현재 항목에 적용할 수 있는 다양한 accessibility-relevant states 목록을 나타낸다. 예를 들어, 한 데모(demo)의 링크(link) 중에 하나에는 focusable, linked, selectable text, opaque, enabled, and sensitive 등이 존재한다. 
+* relations : 항목에 적용되는 모든 accessibility-relevant attributes 목록을 나타낸다. 
+* attributes
 
 ### (6) Address Sanitizer
  Address Sanitizer(ASan)는 C/C++ 프로그램에서 사용 후 사용하지 않는 버그와 범위를 벗어난 버그를 감지하는 빠른 메모리 오류 감지기다. 컴파일 시간 계측기를 사용하여 실행 중에 모든 읽기 및 쓰기를 확인한다. 또한 런타임 부분은 동적으로 할당된 메모리를 확인할 수 있는 `malloc` 및 `free` 함수를 대체한다.
