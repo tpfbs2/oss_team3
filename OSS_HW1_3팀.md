@@ -94,7 +94,25 @@
   
 <NOTE!>  
 
-&nbsp; 노출된 정보는 모든 플랫폼에서 동일하게 나타나며, Inspector는 플랫폼의 접근성 계층의 정보가 아닌 Gecko의 접근성 트리를 노출시킨다. 
+&nbsp; 노출된 정보는 모든 플랫폼에서 동일하게 나타나며, Inspector는 플랫폼의 접근성 계층의 정보가 아닌 Gecko의 접근성 트리를 노출시킨다.  
+
+
+> #### Show web page tabbing order (웹 페이지 탭 순서 표시)
+&nbsp; 마우스 또는 트랙패드(trackpad)로 페이지를 탐색할 수 없는 사용자는 tab 키를 사용하여 페이지의 포커스 가능한 항목(i.e. buttons, links, form controls)을 전환할 수 있다. 키보드 사용자가 웹 페이지를 제대로 탐색하기 위해서는 항목에 초점 맞춘 순서가 중요하기 때문에 웹 접근성의 가장 중요한 요소 중 하나다. **만약 탭 순서가 올바르지 않으면 페이지가 혼동될 수 있다.**  
+
+&nbsp; Firefox 84 이상에서는 탭핑 순서를 표시하는 시각적 오버레이를 활성화할 수 있다. 이는 tab 키를 사용하여 페이지를 탐색하는 방법에 대한 개요를 제공하므로 elements를 통해 탭하는 것보다 문제를 더 효과적으로 강조할 수 있다. 이때, 오버레이는 `Show Tabbing Order` 확인란을 사용하여 On/Off가 가능하다.  
+
+![accessibility-inspector-show_tab_order](https://github.com/user-attachments/assets/c77b8b70-d453-4744-86a8-72e4172b0e7c)  
+모든 포커스 가능한 항목에는 번호 표시가 있으며, 현재 포커스된 항목은 다른 색상으로 강조표시된다.  
+
+  
+![accessibility-inspector-hidden_items](https://github.com/user-attachments/assets/11f69e6e-1bf4-4415-ab0e-c7fa92239bc5)
+![accessibility-inspector-hidden_item_revealed](https://github.com/user-attachments/assets/682365a4-ea97-4576-9aa9-c7ee4dbda6be)  
+또한, 항목 1과 2처럼 마커(marker)가 다른 요소에 의해 숨겨질 수도 있다.   
+
+<NOTE!>  
+&nbsp; 오버레이는 check box이 선택된 시점의 tab 순서(즉, 동적이 아님)를 반영한다. 탭 순서에 항목을 추가하는 작업을 수행할 경우(예: 더 많은 링크가 포함된 시각적 요소를 여는 경우), 접근성 검사기가 다시 실행되기 전까지는 새 항목(변경사항)이 오버레이에 반영되지 않는다. 
+  
 
 ### (6) Address Sanitizer
  Address Sanitizer(ASan)는 C/C++ 프로그램에서 사용 후 사용하지 않는 버그와 범위를 벗어난 버그를 감지하는 빠른 메모리 오류 감지기다. 컴파일 시간 계측기를 사용하여 실행 중에 모든 읽기 및 쓰기를 확인한다. 또한 런타임 부분은 동적으로 할당된 메모리를 확인할 수 있는 `malloc` 및 `free` 함수를 대체한다.
