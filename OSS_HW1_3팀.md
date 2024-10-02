@@ -286,8 +286,7 @@
   &nbsp; ·Using the LLVM Symbolizer (recommended)
    &nbsp; LLVM은 심볼화된 트레이스를 즉시 출력하는 데 ASAN이 쉽게 사용할 symbolizer binary와 함께 제공된다. 이를 사용하려면 프로세스를 실행하기 전에 `llvm-symbolizer binary`의 위치를 반영하도록 환경 변수 `ASAN_Symbolizer_PATH`를 설정하기만 하면 된다. 이 프로그램은 일반적으로 LLVM 배포판에 포함된다. 심볼이 없는 스택은 아래를 참조하여 후처리할 수도 있다.
     
-  #### <Warning Note>
-  &nbsp; Warning: OS X에서 콘텐츠 샌드박스는 symbolizer가 실행되지 않도록 한다. 콘텐츠 프로세스에서 ASan 출력에서 lvm-symbolizer를 사용하려면 콘텐츠 샌드박스를 비활성화해야 한다. 이 작업은 실행 환경에서 `MOZ_DISALE_CONTONT_SANDBOX=1`을 설정하여 수행할 수 있다. .mozconfig에 설정해도 아무런 영향을 미치지 않는다.
+![image](https://github.com/user-attachments/assets/0fa1578e-a8eb-4305-9f3d-53d67432aaf8)
     
   &nbsp; ·Post-Processing Traces with asan_symbolize.py
    &nbsp; llvm-symbolizer binary를 사용하는 대신, 종종 LLVM 배포에 포함되는 LLVM(`$LLVM_HOME/projects/compiler-rt/lib/asan/scripts/asan_symbolize.py`)과 함께 제공되는 `asan_symbolize.py` 스크립트를 통해 pipe the output할 수도 있다. 단점은 스크립트가 심볼을 얻으려면 `addr2line`을 사용해야 하므로 모든 라이브러리가 메모리에 로드되어야 한다는 것이다('libxul'을 포함하여 약간의 시간이 소요된다).
