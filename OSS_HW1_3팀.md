@@ -235,20 +235,20 @@
    -Optimized build
       -O2/-Os 및 ASan 문제가 해결되었으므로 Firefox에서 사용하는 일반 최적화는 문제없이 작동할 것이다. 최적화된 빌드는 거의 눈에 띄지 않는 속도 페널티만 있고 일반 디버그 빌드보다 훨씬 빠른 것으로 보인다.
     
-   ./mach 실행 후 "AddressSanitizer: libc 인터셉터가 초기화됨"이 표시되지 않는다.
+  ./mach 실행 후 "AddressSanitizer: libc 인터셉터가 초기화됨"이 표시되지 않는다.
 
     $ ASAN_OPTIONS=verbosity=2 ./mach run
    
    대신 위의 명령 사용하라.
     
-   개발자 모드로 전환하려면 관리자 사용자 이름 및 비밀번호"가 필요합니다
-   개발자 모드를 활성화하십시오:
+  개발자 모드로 전환하려면 관리자 사용자 이름 및 비밀번호"가 필요합니다
+  개발자 모드를 활성화하십시오:
 
     $ /usr/sbin/DevToolsSecurity -enabl
     Developer mode is now enabled.
 
-   $ /usr/sbin/DevToolsSecurity -enabl
-   Developer mode is now enabled.
+    $ /usr/sbin/DevToolsSecurity -enabl
+    Developer mode is now enabled.
 
 
 ··
