@@ -57,7 +57,7 @@
 ### (5) Accessibility Inspector (접근성 검사기)
 &nbsp; 접근성 검사기는 접근성 트리를 통해 현재 페이지에서 보조 기술에 노출된 중요한 정보에 액세스할 수 있는 수단을 제공하는 기능으로, 누락되었거나 주의가 필요한 사항을 확인할 수 있다. 
 
-> #### Accessing the Accessibility Inspector (액세스 방법)
+> #### Accessing the Accessibility Inspector (접근성 검사기 액세스 방법)
 &nbsp;  처음 다른 DevTools를 열게 되면 접근성 기능이 꺼져있기 때문에(단, 이미 다른 브라우저 탭에서 해당 기능을 켰거나, Firefox 접근성 엔진이 이미 활성화된 경우는 제외) 다음 중 하나의 방식을 수행함으로써 활성화시킬 수 있음. 
  * 도구(Tools)> 브라우저 도구(Browser Tools)에서 접근성(Accessibility) 선택
   * 개발자 도구 상자(Developer Tools toolbox)에서 접근성(Accessibility) 선택
@@ -69,10 +69,11 @@
   * 접근성 엔진은 접근성 기능을 켜면 백그라운드에서 실행되며, 이 기능을 활성화 시킬 시 다른 패널의 매트릭과 전반적인 브라우저 성능에 약간의 영향을 미칠 수 있음. 
   * 접근성 기능을 자동으로 활성화하지 않으려면 구성편집기(Configuration Editor, Config)를 사용하여 기본 설정 `devtools.accessibility.auto-init.enabled`을 `False`로 설정하면 됨.
   * 접근성 기능을 전혀 사용하지 않으려면 구성편집기(Configuration Editor, Config)를 사용하여 환경설정 `devtools.accessibility.enabled`을 `False`로 설정하면 됨. 이를 사용할 시, 앞서 언급한 접근성 검사기 활성화 방법을 수행하지 않게 됨.
+    
 > #### Features of the Accessibility panel (접근성 패널의 기능)
    ![accessibility-inspector-tabbing_order](https://github.com/user-attachments/assets/2057f6cb-f2ad-4736-9568-202630c2addc)
 &nbsp; 왼쪽에는 현재 페이지의 접근성 트리에 있는 모든 항목을 나타내는 트리 다이어그램이 나타나있다. 중첩된 항목이 있는 경우, 화살표를 클릭하여 세부 항목을 확인할 수 있다. 
-* Role : 해당 항목이 페이지에서 수행하는 역할을 나타낸다. (예) `pushbutton` 또는 `footer`) 이러한 역할은 브라우저에서 제공하는 기본 역할이거나 WAI-ARIA를 통해 브라우저에 부여된 역할일 수 있다.
+* Role : 해당 항목이 페이지에서 수행하는 역할을 나타낸다. (예: `pushbutton` 또는 `footer`) 이러한 역할은 브라우저에서 제공하는 기본 역할이거나 WAI-ARIA를 통해 브라우저에 부여된 역할일 수 있다.
 * Name : 해당 항목이 페이지에서 보여지는 이름을 나타낸다. name은 요소에 따라 달라진다. 텍스트(text) 요소의 경우 `textContent`로 표현되고, 양식(form) 요소의 경우 관련된 레이블(lable)의 내용으로 표현된다.
   
 &nbsp; 오른쪽에는 현재 선택한 항목에 대한 자세한 정보를 나타낸다. 나열된 속성은 다음과 같다.
@@ -97,7 +98,8 @@
 &nbsp; 노출된 정보는 모든 플랫폼에서 동일하게 나타나며, Inspector는 플랫폼의 접근성 계층의 정보가 아닌 Gecko의 접근성 트리를 노출시킨다.  
 
 
-> #### Show web page tabbing order (웹 페이지 탭 순서 표시)
+**1) Show web page tabbing order (웹 페이지 탭 순서 표시)**  
+
 &nbsp; 마우스 또는 트랙패드(trackpad)로 페이지를 탐색할 수 없는 사용자는 tab 키를 사용하여 페이지의 포커스 가능한 항목(i.e. buttons, links, form controls)을 전환할 수 있다. 키보드 사용자가 웹 페이지를 제대로 탐색하기 위해서는 항목에 초점 맞춘 순서가 중요하기 때문에 웹 접근성의 가장 중요한 요소 중 하나다. **만약 탭 순서가 올바르지 않으면 페이지가 혼동될 수 있다.**  
 
 &nbsp; Firefox 84 이상에서는 탭핑 순서를 표시하는 시각적 오버레이를 활성화할 수 있다. 이는 tab 키를 사용하여 페이지를 탐색하는 방법에 대한 개요를 제공하므로 elements를 통해 탭하는 것보다 문제를 더 효과적으로 강조할 수 있다. 이때, 오버레이는 `Show Tabbing Order` 확인란을 사용하여 On/Off가 가능하다.  
@@ -112,7 +114,60 @@
 
 <NOTE!>  
 &nbsp; 오버레이는 check box이 선택된 시점의 tab 순서(즉, 동적이 아님)를 반영한다. 탭 순서에 항목을 추가하는 작업을 수행할 경우(예: 더 많은 링크가 포함된 시각적 요소를 여는 경우), 접근성 검사기가 다시 실행되기 전까지는 새 항목(변경사항)이 오버레이에 반영되지 않는다. 
+
+
+**2) Check for accessibility issues (접근성 문제 확인)**  
+
+![accessibility-inspector-check_for_issues](https://github.com/user-attachments/assets/d4cdea11-3876-448a-b221-1def7a240a4b)  
+
+&nbsp; 드롭다운 메뉴 **Check for issues**를 클릭하여 접근성 문제를 확인할 수 있다. Check for issues 메뉴 항목은 문제가 있는 모든 항목과 해당 항목만을 빠르게 확인할 수 있는 방법이다.   
+* None : 문제 list를 표시하지 않음
+* All Isuues : 모든 유형의 문제를 확인함
+* Contrast : 시각적 대비에 문제가 있는지 확인함
+* Keyboard : 키보드를 통해 탐색할 때 발생하는 문제를 확인함
+* Text Labels : 누락된 텍스트 레이블의 문제를 확인함
+
+&nbsp; 메뉴 항목 중 하나를 선택하면 Firefox는 문서에서 선택한 문제 유형을 검색한다. 문서의 크기와 복잡성에 따라 몇 초가 걸릴 수 있으며, 스캔이 완료되면 접근성 검사기 패널의 왼쪽에 해당 유형의 문제가 있는 항목만 표시된다. 패널 오른쪽에 있는 Check 하위 패널에는 선택한 노드의 특정 문제가 나열된다.  
+&nbsp; 메뉴 항목은 토글(toggles) 역할을 한다. 해당 유형의 문제를 보려면 항목을 선택하고, 해당 유형의 문제를 지우려면 항목을 다시 선택한다.  
+
+**3) 시뮬레이션**  
+
+&nbsp; 접근성 검사기는 (FireFox 70 기준) 다양한 형태의 색각 결핍과 명암비 감도 손실이 있는 사용자에 웹파이지가 어떤 모습일지 확인할 수 있는 `:doc:simulator <simulation/index>`를 제공한다.  
+
   
+> #### Notable related features (주목할 만한 관련 기능)
+
+**1) Context menu options**  
+
+![web-page-context-menu](https://github.com/user-attachments/assets/b1ce3dd7-d85e-429b-b687-a16a58086e4b)  
+![dom-inspector-context-menu](https://github.com/user-attachments/assets/b4a153f8-77b2-47ca-87dc-e9d1161db8e5)  
+
+
+&nbsp; UI 기능을 마우스 오른쪽 버튼으로 클릭할 때 웹 페이지의 일반 Context 메뉴와 DOM요소를 마우스 오른쪽 버튼으로 클릭할 때 페이지 검사기의 HTML 창에 여분의 Context 메뉴 옵션이 추가되었다.  
+&nbsp; *Inspect Accessibility Properties / Show Accessibility Properties context menu* 옵션을 선택하면 접근성 tab이 즉시 열려 해당 접근성 트리 항목과 속성이 표시된다. 접근성 속성이 없는 일부 DOM 요소에는 *Inspect Accessibility Properties / Show Accessibility Properties context menu* 옵션이 회색으로 표시된다.  
+
+**2) Highlighting of UI items (UI 항목 강조 표시)**  
+
+&nbsp; 접근성 Tab에서 마우스가 접근성 항목 위를 맴돌면 해당 항목과 관련된 UI 항목 위에 반투명 하이라이트가 표시되는 걸 볼 수 있다. 항목의 역할과 이름은 필요한 경우 작은 정보 표시줄에 색상 대비 정보와 함께 표시된다. 이는 접근성 트리의 항목이 실제 페이지의 UI 항목과 어떻게 관련되는지 확인하는 데 유용하다.  
+
+![image_accessibility](https://github.com/user-attachments/assets/2b367537-3a71-4fbb-9957-ffe67905f742)  
+  
+&nbsp; 위 예제를 통해 볼 수 있듯이 마우스가 접근성 항목 위를 맴돌 때 이미지가 강조 표시되고 이미지의 역할인 graphic, 이름인 "Road, Asphalt, Sky, Clouds, Fall", 정보 표시줄에 색 대비 비율인 3.46이 표시되는 것을 볼 수 있다.  
+
+&nbsp; 명암비가 충분하지 않으면 시력이 떨어지거나 색맹과 같은 시각 장애가 있는 사용자는 텍스트를 읽을 수 없기 때문에 명암비 정보는 웹사이트의 색상 팔레트를 설계하는데 중요한 기능이다. 접근성 Tab에서는 이러한 명암비 정보 역시 제시하고 있다.  
+
+![screen_shot_2019-01-29_at_10 11 13](https://github.com/user-attachments/assets/4119f681-53ef-4666-9dc5-24f34d2ed032)  
+
+&nbsp; 위 이미지의 색상대비는 2.86로, 가독성을 높이기에는 좋지 못한 대비이다. 이런 경우 명암비가 허용되는 명암비를 충족하지 못한다는 경고 기호를 표기를 띄운다.  
+
+![screen_shot_2019-01-29_at_10 21 07](https://github.com/user-attachments/assets/19272b7c-525e-45d1-9aad-1bc6434c8d50)  
+
+&nbsp; FireFox 65에서는 복잡한 배경 이미지(e.g. a gradient)가 있는 일부 전경 텍스트에 대해서도 색상 대비에 대한 정보를 제시한다. 위 예제의 경우, 4.72에서 5.98에 해당하는 명암비 범위를 가지며, 녹색 체크 표시를 통해 텍스트의 명암비가 4.5:1 이상으로 향상된 명암비 기준(Level AAA)를 충족함을 알 수 있다. 
+
+
+
+
+ 
 
 ### (6) Address Sanitizer
  Address Sanitizer(ASan)는 C/C++ 프로그램에서 사용 후 사용하지 않는 버그와 범위를 벗어난 버그를 감지하는 빠른 메모리 오류 감지기다. 컴파일 시간 계측기를 사용하여 실행 중에 모든 읽기 및 쓰기를 확인한다. 또한 런타임 부분은 동적으로 할당된 메모리를 확인할 수 있는 `malloc` 및 `free` 함수를 대체한다.
