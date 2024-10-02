@@ -54,24 +54,23 @@
 &nbsp; 이 외에도, Firefox Monitor는 데이터 유출 사건이 발생했을 때의 구체적인 유출 정보, 즉 유출된 데이터의 종류(예: 비밀번호, 이메일 주소, 전화번호, 신용카드 정보 등)와 유출이 발생한 웹사이트 또는 서비스에 대한 정보를 제공한다. 이러한 세부 정보는 사용자가 어디서 문제가 발생했는지 파악하는 데 중요한 역할을 하며, 개인 정보 유출에 대한 심각성을 인식하고 적극적으로 대응할 수 있게 한다. 
 &nbsp; 결론적으로, Firefox Monitor는 사용자가 온라인에서 더욱 안전하게 활동할 수 있도록 도움을 주는 강력한 도구이다.
     
-### (5) 접근성 검사기(접근성 검사기)
+### (5) Accessibility Inspector (접근성 검사기)
 &nbsp; 접근성 검사기는 접근성 트리를 통해 현재 페이지에서 보조 기술에 노출된 중요한 정보에 액세스할 수 있는 수단을 제공하는 기능으로, 누락되었거나 주의가 필요한 사항을 확인할 수 있다. 
 
-> #### 접근성 검사기(액세스 방법)
+> #### Accessing the Accessibility Inspector (액세스 방법)
 &nbsp;  처음 다른 DevTools를 열게 되면 접근성 기능이 꺼져있기 때문에(단, 이미 다른 브라우저 탭에서 해당 기능을 켰거나, Firefox 접근성 엔진이 이미 활성화된 경우는 제외) 다음 중 하나의 방식을 수행함으로써 활성화시킬 수 있음. 
- *도구(도구)> 브라우저 도구(브라우저 도구) 에서 접근성(접근성) 선택
- *개발자 도구 상자(개발자 도구 상자)에서 접근성(접근성) 선택
- * 기본 브라우저 창에서 마우스 오른쪽 버튼을 클릭하고 Context 메뉴에서 접근성 속성 검사(Inspect Accessibiliy Properties) 선택
- *':doc:페이지 검사기 <..../페이지_인스펙터/인덱스>의 의 HTML 창에서 항목을 마우스 오른쪽 버튼으로 클릭하고 컨텍스트 메뉴에서 접근성 속성 표시(접근성 속성 표시) 를 선택
- 활성화 되면 개발자 도구 상자를 닫을 때까지 접근성 엔진이 계속 실행된다.
+ * 도구(Tools)> 브라우저 도구(Browser Tools)에서 접근성(Accessibility) 선택
+  * 개발자 도구 상자(Developer Tools toolbox)에서 접근성(Accessibility) 선택
+  * 기본 브라우저 창에서 마우스 오른쪽 버튼을 클릭하고 Context 메뉴에서 접근성 속성 검사(Inspect Accessibiliy Properties) 선택
+  * `:doc:Page Inspector <../page_inspector/index>`의 HTML 창에서 항목을 마우스 오른쪽 버튼으로 클릭하고 Context 메뉴에서 접근성 속성 표시(Show Accessibility Properties)를 선택
+  활성화 되면 개발자 도구 상자를 닫을 때까지 접근성 엔진이 계속 실행된다.
 
-<참고!>
- * 접근성 엔진은 접근성 기능을 켜면 백그라운드에서 실행되며, 이 기능을 활성화 시킬 시 다른 패널의 매트릭과 전반적인 브라우저 성능에 약간의 영향을 미칠 수 있음. 
- * 접근성 기능을 자동으로 활성화하지 않으려면 구성편집기(Configuration Editor, Config)를 사용하여 기본 설정 `devtools.accessibility.자동 시작.활성화된 을 '거짓' 로 설정하면 됨.
- * 접근성 기능을 전혀 사용하지 않으려면 구성편집기(Configuration Editor, Config)를 사용하여 환경설정 `devtools.accessibility.enabled`을 `False`로 설정하면 됨. 이를 사용할 시, 앞서 언급한 접근성 검사기 활성화 방법을 수행하지 않게 됨.
-
-> #### 접근성 패널(접근성 패널의 기능)의 기능
-   ![접근성-inspector 탭핑_주문](https://github.com/user-attachments/assets/2057f6cb-f2ad-4736-9568-202630c2addc)
+<NOTE!>
+  * 접근성 엔진은 접근성 기능을 켜면 백그라운드에서 실행되며, 이 기능을 활성화 시킬 시 다른 패널의 매트릭과 전반적인 브라우저 성능에 약간의 영향을 미칠 수 있음. 
+  * 접근성 기능을 자동으로 활성화하지 않으려면 구성편집기(Configuration Editor, Config)를 사용하여 기본 설정 `devtools.accessibility.auto-init.enabled`을 `False`로 설정하면 됨.
+  * 접근성 기능을 전혀 사용하지 않으려면 구성편집기(Configuration Editor, Config)를 사용하여 환경설정 `devtools.accessibility.enabled`을 `False`로 설정하면 됨. 이를 사용할 시, 앞서 언급한 접근성 검사기 활성화 방법을 수행하지 않게 됨.
+> #### Features of the Accessibility panel (접근성 패널의 기능)
+   ![accessibility-inspector-tabbing_order](https://github.com/user-attachments/assets/2057f6cb-f2ad-4736-9568-202630c2addc)
 &nbsp; 왼쪽에는 현재 페이지의 접근성 트리에 있는 모든 항목을 나타내는 트리 다이어그램이 나타나있다. 중첩된 항목이 있는 경우, 화살표를 클릭하여 세부 항목을 확인할 수 있다. 
 * Role : 해당 항목이 페이지에서 수행하는 역할을 나타낸다. (예) `pushbutton` 또는 `footer`) 이러한 역할은 브라우저에서 제공하는 기본 역할이거나 WAI-ARIA를 통해 브라우저에 부여된 역할일 수 있다.
 * Name : 해당 항목이 페이지에서 보여지는 이름을 나타낸다. name은 요소에 따라 달라진다. 텍스트(text) 요소의 경우 `textContent`로 표현되고, 양식(form) 요소의 경우 관련된 레이블(lable)의 내용으로 표현된다.
@@ -83,17 +82,18 @@
 * Value : 항목의 값을 나타내고, 항목의 유형에 따라 다른 의미를 가진다. 예를 들어 form input(role:entry)은 input에 입력된 모든 항목의 Value을 갖지만, Link 값은 <a> 요소의 href 속성에 있는 URL을 Value로 가진다. 
 * DOMNode : 접근성 트리의 항목이 나타내는 DOM 노드의 유형을 나타낸다. `target`아이콘을 클릭하여 `:doc:Page Inspector <../page_inspector/index>`에서 노드를 선택할 수 있다. 이때, `target` 아이콘 위에 마우스를 놓으면 다음과 같이 page content에서 DOMNode가 강조표시된다.
   
-  ![돔 노드-타겟-아이콘](https://github.com/user-attachments/assets/eb078720-bd09-469d-90c2-c0ed1b5932b9)
+  ![dom-node-target-icon](https://github.com/user-attachments/assets/eb078720-bd09-469d-90c2-c0ed1b5932b9)
 * description : 일반적으로 제목 속성(title attribute)의 내용에 따라 요소에 대한 추가 설명을 제공한다.
-*키보드Shortcut : `accessKey`에서 지정한 대로 요소를 활성화하는 데 사용할 수 있는 키보드바로가기 기능이다.
+* keyboardShortcut : `accessKey`에서 지정한 대로 요소를 활성화하는 데 사용할 수 있는 키보드 바로가기 기능이다.
 * childCount : 접근성 트리 계층에서 현재 항목의 하위 항목의 수를 나타낸다.
 * indexInParent : 모체에서 하위 항목의 번호를 나타내는 인덱스 값이다. 항목이 상위 항목의 첫 번째 항목인 경우 0의 값을 가지고 두 번째 항목인 경우 1의 값을 가진다.
-*stares : 현재 항목에 적용할 수 있는 다양한 접근성 - relevant 상태 목록을 나타낸다. 예를 들어, 한 데모(demo) 의 링크(링크)는 포커스 가능, 링크 가능, 선택 가능한 텍스트, 불투명, 활성화 및 민감한 등이 존재한다를 중에 하나에는합니다. 
-*관계 : 항목에 적용되는 모든 접근성-relevant 관계 목록을 나타낸다. 예를 들어 entry 항목은 label 항목과 "labelled by" 관계를 entry 항목과 "label for" 관계를 가질 수 있다. 
+* stares : 현재 항목에 적용할 수 있는 다양한 accessibility-relevant states 목록을 나타낸다. 예를 들어, 한 데모(demo)의 링크(link) 중에 하나에는 focusable, linked, selectable text, opaque, enabled, and sensitive 등이 존재한다. 
+* relations : 항목에 적용되는 모든 accessibility-relevant relationships 목록을 나타낸다. 예를 들어 entry 항목은 label 항목과 "labelled by" 관계를 entry 항목과 "label for" 관계를 가질 수 있다. 
 * attributes : 항목에 적용되는 모든 accessibility-relevant attributes 목록을 나타낸다. margin-left 및 문자 들여쓰기와 같은 스타일 관련 속성과 접근성 정보와 관련된 유용한 상태들(예: 드래그 가능 여부 또는 레벨, 예를 들어 제목인 경우 제목의 레벨이 무엇인지)이 포함될 수 있다.
 
   
-<참고!>
+<NOTE!>  
+
 &nbsp; 노출된 정보는 모든 플랫폼에서 동일하게 나타나며, Inspector는 플랫폼의 접근성 계층의 정보가 아닌 Gecko의 접근성 트리를 노출시킨다. 
 
 ### (6) 주소 소독제
