@@ -368,3 +368,27 @@
   &nbsp; LSan이라는 메타 버그는 LSan에서 발견된 모든 버그를 추적하기 위해 유지 관리된다.
 
 ### (7) Measure a portion of the page (페이지 일부 측정)  
+
+
+### (8) Eyedropper
+
+Aidropper를 사용하면 현재 페이지에서 색상을 선택할 수 있다. 이 도구는 페이지 위로 돋보기처럼 작동하여 픽셀을 정밀하게 선택할 수 있다. 돋보기 아래에는 :ref:`Settings > Inspector <settings-inspector>` > Default color unit에서 선택한 방식을 사용하여 현재 픽셀의 색상 값을 표시한다:
+
+
+
+두 가지 방법 중 하나로 사용할 수 있다:
+• 페이지에서 색상을 선택하여 클립보드에 복사다.
+• 검사자 규칙 보기(Inspector's Rules view)의 색상 값을 페이지에서 선택한 색상으로 변경한다.
+
+> #### 클립보드에 색상 복사하기(Copying a color to the clipboard)
+다음 두 가지 방법 중 하나로 스포이드를 연다:
+• "브라우저 도구(Browser Tools)" 메뉴에서 "Eyedropper"를 선택
+• :doc: 'Page Inspector <../page_inspector/index> 탭을 열고 도구 모음에서 eyedropper 버튼을 클릭
+
+> #### Changing a color value in the Rules view
+Inspector's Rules view에 표시되는 색상 값 옆에는 색상 샘플이 있다: 샘플을 클릭하면 :doc:'color picker popup <../page_inspector/how_to/inspect_and_select_colors/index>'가 표시된다. Firefox 31의 팝업에는 eyedropper 아이콘이 포함되어 있습니다: 이 아이콘을 클릭하여 eyedropper를 활성화한다.
+
+이제 Eyedropper를 클릭하면 Rules view의 색상이 선택한 색상으로 설정된다.
+
+> #### 키보드 단축키
+ :ref:`All keyboard shortcuts > Eyedropper <keyboard-shortcuts-eyedropper>`를 확인하라.
