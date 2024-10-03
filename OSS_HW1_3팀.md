@@ -432,6 +432,24 @@
 
 ### (7) Measure a portion of the page (페이지 일부 측정)  
 
+&nbsp; **Measuring Tool**을 이용하면 웹페이지의 특정 영역을 측정할 수 있다. 기본적으로 해당 도구는 숨겨져 있기 때문에 버튼을 활성화 하려면:  
+* DevTools>`:doc:Settings <../settings/index>`
+* *Available Toolbox*(사용가능한 도구상자) 버튼에서 *Measure a portion of the page* 체크박스를 선택한다.
+  
+   ![measure-button](https://github.com/user-attachments/assets/5f39d85c-ad96-475b-8bc6-8c0da40fdf71)
+
+  &nbsp; 이 과정을 마치면 *Setting/Options* 버튼과 동일한 위치, 즉 도구상자(Toolbox)의 오른쪽 상단부에 *Measuring a portion of the page* 버튼이 표시된다. 위 이미지 속 빨간 네모 부분이 *Measuring a portion of the page* 버튼에 해당한다. 
+
+  ![cursor-shown](https://github.com/user-attachments/assets/2ae2bb2e-ff73-42ef-9409-622b97a49cc5)
+  ![resizable_measuring_area](https://github.com/user-attachments/assets/56196488-78ff-4144-a44d-e24b38002d9f)
+    
+&nbsp; 기능이 활성화되면 viewport 위에서 마우스를 눌렀을 때 마우스 옆에 현재 좌표가 표시된 십자형 커서가 나타나는 것을 확인할 수 있다. 마우스 버튼을 누른 다음 드래그를 하면 직사각형을 그리기 시작하고 x,y,대각선 치수가 함께 표시된다. 이때 단위는 픽셀 단위이다.  
+
+&nbsp; 마우스를 누르는 것을 멈추면 직사각형을 다시 클릭할 때까지 그대로 유지되므로 스크린샷을 찍고 정보를 메모하는 등의 시간을 할애할 수 있다. 또한, 주변의 핸들 중 하나를 클릭하여 직사각형의 크기를 수정할 수도 있다.  
+
+
+<NOTE!>  
+&nbsp; 방향키를 사용하여 도구를 이동하고 `ctrl` + 방향키(Mac일 경우 `Cmd` + 방향키)를 사용하여 크기를 조정할 수 있다. 도구를 이동할 때 방향키를 길게 누르면 더 빠르게 이동가능하다.  
 
 ### (8) Eyedropper
 
