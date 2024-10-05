@@ -326,7 +326,7 @@ Firefox Monitor 웹사이트에 접속하여 이메일 주소를 입력하면, �
  &nbsp; 위에서 언급한 최적화된 Linux ASan 빌드를 `firefox-asan`이라는 디렉토리로 압축 해제한다. `--debug` 및 `--os` 스위치를 사용하여 위에 나열된 다른 변형을 가져올 수 있다.
 
  > #### Creating Try builds
- &nbsp; 어떤 이유로 이전 섹션에서 언급한 사전 빌드된 바이너리를 사용할 수 없는 경우(예: Linux가 아닌 빌드를 원하거나 패치를 테스트해야 하는 경우), Firefox를 직접 빌드하거나 (다음 섹션 참조)  :ref:'try server <Pushing to Try>'을 사용하여 사용자 지정 빌드를 만들 수 있다. 시도하려면 L1 커밋 액세스가 필요하다. 아직 이 액세스 권한이 없는 경우 액세스를 요청할 수 있다(요구 사항은 Mozilla 커밋 작성자 및 Mozilla 커밋 액세스 정책 참조).
+ &nbsp; 어떤 이유로 이전 섹션에서 언급한 사전 빌드된 바이너리를 사용할 수 없는 경우(예: Linux가 아닌 빌드를 원하거나 패치를 테스트해야 하는 경우), Firefox를 직접 빌드하거나 (다음 섹션 참조)  :ref:'try server [Pushing to Try]'을 사용하여 사용자 지정 빌드를 만들 수 있다. 시도하려면 L1 커밋 액세스가 필요하다. 아직 이 액세스 권한이 없는 경우 액세스를 요청할 수 있다(요구 사항은 Mozilla 커밋 작성자 및 Mozilla 커밋 액세스 정책 참조).
 
  &nbsp; 이 tree에는 빌드로 만들기 위한 여러 mozconfig 파일이 포함되어 있다("nightly-asan" 파일은 release 빌드를 생성하는 반면, "debug-asan" 파일은 디버그+opt 빌드를 생성한다). Linux 빌드의 경우, 적절한 구성 파일이 `Linux64-asan` 대상에서 사용된다. macOS 또는 Windows 빌드를 만들려면 시도하기 전에 일반 디버그 구성 위에 적절한 구성 파일을 복사해야 한다.
  
@@ -338,7 +338,7 @@ Firefox Monitor 웹사이트에 접속하여 이메일 주소를 입력하면, �
 
  > #### Creating local builds on Windows
  &nbsp; Windows에서는 64-bit 빌드에서만 ASan이 지원된다.
- &nbsp; `mach bootstrap`을 실행하여 `~/.mozbuild` 디렉토리에서 업데이트된 clang-cl을 얻은 다음 다음  :ref:'mozconfig <Configuring Build Options>'을 사용한다:
+ &nbsp; `mach bootstrap`을 실행하여 `~/.mozbuild` 디렉토리에서 업데이트된 clang-cl을 얻은 다음 다음  :ref:'mozconfig [Configuring Build Options]'을 사용한다:
 
     ac_add_options --enable-address-sanitizer
     ac_add_options --disable-jemalloc
@@ -361,7 +361,7 @@ Firefox Monitor 웹사이트에 접속하여 이메일 주소를 입력하면, �
 &nbsp; -Building Firefox
 
   &nbsp; ·Getting the source
-   &nbsp; 해당 수정본 또는 이후 수정본을 사용하려면 :ref: 'mozilla-central <Mercurial overview>'의 복사품을 작성하기만 하면 된다.
+   &nbsp; 해당 수정본 또는 이후 수정본을 사용하려면 :ref: 'mozilla-central [Mercurial overview]'의 복사품을 작성하기만 하면 된다.
 
   &nbsp; ·빌드 구성 조정(Adjusting the build configuration)
    &nbsp; mozilla-central 디렉토리에 다음 내용으로 빌드 구성 파일 `mozconfig`를 만든다:
