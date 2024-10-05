@@ -308,13 +308,14 @@ Firefox Monitor 웹사이트에 접속하여 이메일 주소를 입력하면, �
 
 
 ### (6) Address Sanitizer
-&nbsp; Address Sanitizer(ASan)는 C/C++ 프로그램에서 사용 후 사용하지 않는 버그와 범위를 벗어난 버그를 감지하는 빠른 메모리 오류 감지기다. 컴파일 시간 계측기를 사용하여 실행 중에 모든 읽기 및 쓰기를 확인한다. 또한 런타임 부분은 동적으로 할당된 메모리를 확인할 수 있는 `malloc` 및 `free` 함수를 대체한다.
+&nbsp; Address Sanitizer(ASan)는 C/C++ 프로그램에서 사용 후 사용하지 않는 버그와 범위를 벗어난 버그를 감지하는 빠른 메모리 오류 감지기다. compile-time instrumentation를 사용하여 실행 중에 모든 읽기 및 쓰기를 확인한다. 또한 runtime 부분은 동적으로 할당된 메모리를 확인할 수 있는 `malloc` 및 `free` 함수를 대체한다.
 &nbsp; asan-maintenance라는 메타 버그는 ASan에서 발견된 모든 버그를 추적하기 위해 유지 관리된다.
 
 > #### 아티팩트 빌드 다운로드(Downloading artifact builds)
- &nbsp; Linux 및 Windows 사용자의 경우, 주소 소독기를 사용하여 Firefox 빌드를 얻는 가장 쉬운 방법은 모질라 중심의 빌드로 지속적인 통합을 다운로드하는 것이다(최소 매일 업데이트):
+ &nbsp; Linux 및 Windows 사용자의 경우, Address Sanitizer를 사용하여 Firefox 빌드를 얻는 가장 쉬운 방법은 mozilla-central 빌드로 지속적인 통합을 다운로드하는 것이다(최소 매일 업데이트):
  
  &nbsp; • mozilla-central에 최적화된 빌드 : Linux | Windows(테스트에 권장)
+ 
  &nbsp; • mozilla-central 디버깅 빌드 : Linux | Windows(최적화된 빌드가 제대로 작동하지 않는 경우 디버깅에 권장)
 
  &nbsp; 퍼징 팀(fuzzing team)은 또한 이러한 빌드와 기타 많은 CI 빌드를 다운로드할 수 있는 `fuzzfetch`라는 도구를 제공한다. 이 도구를 사용하면 빌드를 훨씬 쉽게 다운로드하고 풀 수 있으며 퍼징뿐만 아니라 CI 빌드를 다운로드해야 하는 모든 용도로 사용할 수 있다.
@@ -325,17 +326,19 @@ Firefox Monitor 웹사이트에 접속하여 이메일 주소를 입력하면, �
  &nbsp; 위에서 언급한 최적화된 Linux ASan 빌드를 `firefox-asan`이라는 디렉토리로 압축 해제한다. `--debug` 및 `--os` 스위치를 사용하여 위에 나열된 다른 변형을 가져올 수 있다.
 
  > #### Creating Try builds
- &nbsp; 어떤 이유로 이전 섹션에서 언급한 사전 빌드된 바이너리를 사용할 수 없는 경우(예: Linux가 아닌 빌드를 원하거나 패치를 테스트해야 하는 경우), Firefox를 직접 빌드하거나 (다음 섹션 참조) :ref:'Pushing to Try 서버 <Pushing>'을 사용하여 사용자 지정 빌드를 만들 수 있다. 시도하려면 L1 커밋 액세스가 필요하다. 아직 이 액세스 권한이 없는 경우 액세스를 요청할 수 있다(요구 사항은 Mozilla 커밋 작성자 및 Mozilla 커밋 액세스 정책 참조).
+ &nbsp; 어떤 이유로 이전 섹션에서 언급한 사전 빌드된 바이너리를 사용할 수 없는 경우(예: Linux가 아닌 빌드를 원하거나 패치를 테스트해야 하는 경우), Firefox를 직접 빌드하거나 (다음 섹션 참조)  :ref:'try server <Pushing to Try>'을 사용하여 사용자 지정 빌드를 만들 수 있다. 시도하려면 L1 커밋 액세스가 필요하다. 아직 이 액세스 권한이 없는 경우 액세스를 요청할 수 있다(요구 사항은 Mozilla 커밋 작성자 및 Mozilla 커밋 액세스 정책 참조).
 
- &nbsp; 이 트리에는 빌드로 만들기 위한 여러 mozconfig 파일이 포함되어 있다("nightly-asan" 파일은 릴리스 빌드를 생성하는 반면, "debug-asan" 파일은 디버그+opt 빌드를 생성한다). Linux 빌드의 경우, 적절한 구성 파일이 `Linux64-asan` 대상에서 사용된다. macOS 또는 Windows 빌드를 만들려면 시도하기 전에 일반 디버그 구성 위에 적절한 구성 파일을 복사해야 한다.
+ &nbsp; 이 tree에는 빌드로 만들기 위한 여러 mozconfig 파일이 포함되어 있다("nightly-asan" 파일은 release 빌드를 생성하는 반면, "debug-asan" 파일은 디버그+opt 빌드를 생성한다). Linux 빌드의 경우, 적절한 구성 파일이 `Linux64-asan` 대상에서 사용된다. macOS 또는 Windows 빌드를 만들려면 시도하기 전에 일반 디버그 구성 위에 적절한 구성 파일을 복사해야 한다.
  
- &nbsp; 예를 들어: cp browser/config/mozconfigs/macosx64/debug-asan browser/config/mozconfigs/macosx64/debug
+ &nbsp; 예를 들어:
+     
+     cp browser/config/mozconfigs/macosx64/debug-asan browser/config/mozconfigs/macosx64/debug
 
  &nbsp; 그런 다음 일반적인 방식으로 시도를 누른 다음 빌드가 완료되면 적절한 빌드 아티팩트를 다운로드할 수 있다.
 
  > #### Creating local builds on Windows
  &nbsp; Windows에서는 64-bit 빌드에서만 ASan이 지원된다.
- &nbsp; `mach bootstrap`을 실행하여 `~/.mozbuild` 디렉토리에서 업데이트된 clang-cl을 얻은 다음 다음 :ref:'mozconfig < 빌드 옵션 구성>'을 사용한다:
+ &nbsp; `mach bootstrap`을 실행하여 `~/.mozbuild` 디렉토리에서 업데이트된 clang-cl을 얻은 다음 다음  :ref:'mozconfig <Configuring Build Options>'을 사용한다:
 
     ac_add_options --enable-address-sanitizer
     ac_add_options --disable-jemalloc
@@ -351,12 +354,14 @@ Firefox Monitor 웹사이트에 접속하여 이메일 주소를 입력하면, �
 
  > #### Creating local builds on Linux or Mac
 &nbsp; -전제 조건 구축
+
   &nbsp; ·LLVM/Clang
    &nbsp; ASAN 계측기는 LLVM 패스로 구현되어 Clang에 통합된다. Firefox를 편집할 수 있는 모든 Clang 버전은 ASAN 빌드에 필요한 모든 것을 갖추고 있다.
 
 &nbsp; -Building Firefox
+
   &nbsp; ·Getting the source
-   &nbsp; 해당 수정본 또는 이후 수정본을 사용하려면 :ref: 'mozilla-central의 <Mercurial overview>의 복사품을 작성하기만 하면 된다.
+   &nbsp; 해당 수정본 또는 이후 수정본을 사용하려면 :ref: 'mozilla-central <Mercurial overview>'의 복사품을 작성하기만 하면 된다.
 
   &nbsp; ·빌드 구성 조정(Adjusting the build configuration)
    &nbsp; mozilla-central 디렉토리에 다음 내용으로 빌드 구성 파일 `mozconfig`를 만든다:
@@ -392,6 +397,7 @@ Firefox Monitor 웹사이트에 접속하여 이메일 주소를 입력하면, �
      # ac_add_options --with-macos-sdk=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk
 
    &nbsp; `browser/config/mozconfigs/linux64/nightly-asan`(자동 테스트에 사용되는 Address Sanitizer 빌드에 사용되는 구성 파일)에서 볼 수 있듯이 이 파일이 필요할 수도 있다:
+ 
      # ASan specific options on Linux
      ac_add_options --enable-valgrind
 
@@ -446,14 +452,13 @@ Firefox Monitor 웹사이트에 접속하여 이메일 주소를 입력하면, �
   &nbsp; -Optimized build
    &nbsp; -O2/-Os 및 ASan 문제가 해결되었으므로 Firefox에서 사용하는 일반 최적화는 문제없이 작동할 것이다. 최적화된 빌드는 거의 눈에 띄지 않는 속도 페널티만 있고 일반 디버그 빌드보다 훨씬 빠른 것으로 보인다.
     
-   &nbsp; ./mach 실행 후 "AddressSanitizer: libc 인터셉터가 초기화됨"이 표시되지 않는다.
+   &nbsp; ./mach 실행 후 "AddressSanitizer: libc 인터셉터가 초기화됨("AddressSanitizer: libc interceptors initialized")"이 표시되지 않는다.
 
     $ ASAN_OPTIONS=verbosity=2 ./mach run
    
    &nbsp; 대신 위의 명령 사용하라.
     
-   &nbsp; 개발자 모드로 전환하려면 관리자 사용자 이름 및 비밀번호"가 필요하다.
-   &nbsp; 개발자 모드를 활성화하라:
+   &nbsp; 개발자 모드로 전환하려면 "관리자 사용자 이름 및 비밀번호"가 필요하다. 개발자 모드를 활성화하라:
 
     $ /usr/sbin/DevToolsSecurity -enabl
     Developer mode is now enabled.
@@ -471,7 +476,7 @@ Firefox Monitor 웹사이트에 접속하여 이메일 주소를 입력하면, �
 
  > #### LeakSanitizer
 
-  &nbsp; LeakSanitizer(LSAN)는 일반 ASAN을 위한 특별 실행 모드이다. 보수적인 스캔에 따르면 ASAN은 주어진 지점에서 라이브 블록 집합을 추적하여 종료 시 여전히 활성화되어 있지만 스택에서 도달할 수 없는 블록의 할당 스택을 출력하는 방식을 활용한다. 이는 일반적인 Gecko 종료 누출 감지에 참여하지 않는 `char*`와 같은 항목의 누출을 감지하는 데 매우 유용하다. LSan은 x86_64 Linux 및 OS X에서 지원된다.
+  &nbsp; LeakSanitizer(LSAN)는 일반 ASAN을 위한 특별 실행 모드이다. 보수적인 스캔에 따르면 ASAN은 주어진 지점에서 라이브 블록 집합을 추적하여 종료 시 여전히 활성화되어 있지만 스택에서 도달할 수 없는 블록의 할당 스택을 출력하는 방식을 활용한다. 이는 일반적인 Gecko 종료 누출 감지(Gecko shutdown leak detection)에 참여하지 않는 `char*`와 같은 항목의 누출을 감지하는 데 매우 유용하다. LSan은 x86_64 Linux 및 OS X에서 지원된다.
 
   &nbsp; 최신 버전의 Clang에서는 기본적으로 LSan이 활성화되어 있다. ASAN 빌드가 LSan을 실행하지 않게 하려면 환경 변수 `ASAN_OPSONS`를 `detect_leaks=0`으로 설정하거나 이미 설정되어 있는 경우 `:-separated list`에 항목으로 추가한다. 어떤 이유로든 활성화하지 않으려면 0이 아닌 1로 설정한다. LSan이 활성화되어 있고 non-debug 빌드를 사용하는 경우, 허위 유출을 방지하기 위해 종료 GC와 CC를 실행하도록 환경 변수 `MOZ_CC_RUN_DURN_SHUTDOWN=1`을 설정하는 것도 좋다.
 
@@ -504,23 +509,33 @@ Firefox Monitor 웹사이트에 접속하여 이메일 주소를 입력하면, �
 
 ### (8) Eyedropper
 
-Aidropper를 사용하면 현재 페이지에서 색상을 선택할 수 있다. 이 도구는 페이지 위로 돋보기처럼 작동하여 픽셀을 정밀하게 선택할 수 있다. 돋보기 아래에는 :ref:`Settings > Inspector <settings-inspector>` > Default color unit에서 선택한 방식을 사용하여 현재 픽셀의 색상 값을 표시한다:
+&nbsp; Eyedropper를 사용하면 현재 페이지에서 색상을 선택할 수 있다. 이 도구는 페이지 위로 돋보기처럼 작동하여 픽셀을 정밀하게 선택할 수 있다. 돋보기 아래에는 :ref'Settings > Inspector <settings-inspector>' > Default color unit에서 선택한 방식을 사용하여 현재 픽셀의 색상 값을 표시한다:
+
+![image](https://github.com/user-attachments/assets/94f7b615-e223-4700-b9e2-a4790c0f650d)
 
 
-
-두 가지 방법 중 하나로 사용할 수 있다:
+ &nbsp; 두 가지 방법 중 하나로 사용할 수 있다:
 • 페이지에서 색상을 선택하여 클립보드에 복사다.
 • 검사자 규칙 보기(Inspector's Rules view)의 색상 값을 페이지에서 선택한 색상으로 변경한다.
 
 > #### 클립보드에 색상 복사하기(Copying a color to the clipboard)
-다음 두 가지 방법 중 하나로 스포이드를 연다:
-• "브라우저 도구(Browser Tools)" 메뉴에서 "Eyedropper"를 선택
-• :doc: 'Page Inspector <../page_inspector/index> 탭을 열고 도구 모음에서 eyedropper 버튼을 클릭
+
+&nbsp; 다음 두 가지 방법 중 하나로 Eyedropper를 연다:
+&nbsp; • "브라우저 도구(Browser Tools)" 메뉴에서 "Eyedropper"를 선택
+&nbsp; • :doc:'Page Inspector <../page_inspector/index>' 탭을 열고 도구 모음에서 eyedropper 버튼을 클릭
 
 > #### Changing a color value in the Rules view
-Inspector's Rules view에 표시되는 색상 값 옆에는 색상 샘플이 있다: 샘플을 클릭하면 :doc:'color picker popup <../page_inspector/how_to/inspect_and_select_colors/index>'가 표시된다. Firefox 31의 팝업에는 eyedropper 아이콘이 포함되어 있습니다: 이 아이콘을 클릭하여 eyedropper를 활성화한다.
+&nbsp; Inspector's Rules view에 표시되는 색상 값 옆에는 색상 샘플이 있다: 샘플을 클릭하면 :doc:'color picker popup <../page_inspector/how_to/inspect_and_select_colors/index>'가 표시된다. Firefox 31의 팝업에는 eyedropper 아이콘이 포함되어 있다: 이 아이콘을 클릭하여 eyedropper를 활성화한다.
 
-이제 Eyedropper를 클릭하면 Rules view의 색상이 선택한 색상으로 설정된다.
+&nbsp; 이제 Eyedropper를 클릭하면 Rules view의 색상이 선택한 색상으로 설정된다.
 
 > #### 키보드 단축키
- :ref:`All keyboard shortcuts > Eyedropper <keyboard-shortcuts-eyedropper>`를 확인하라.
+&nbsp; :ref:'All keyboard shortcuts > Eyedropper <keyboard-shortcuts-eyedropper>'를 확인하라.
+
+> #### Firefox에서 eyedropper 사용하기
+&nbsp; 웹 페이지에서 특정 색상의 정확한 헥스 색상 코드를 알고 싶을 수 있는 이유는 여러 가지가 있다. 데스크톱 버전의 Firefox에서 스포이드 도구를 사용하면 웹 페이지에 표시되는 모든 색상 위에 마우스를 올려놓기만 하면 정확한 헥스 색상 코드를 찾을 수 있다. 클릭하면 해당 색상 값이 클립보드에 복사된다.
+
+![image](https://github.com/user-attachments/assets/8676f782-479d-4908-8f88-af506b265d9a)
+
+
+&nbsp; 도구 메뉴의 "브라우저 도구" 아래 또는 Firefox 도구 모음 메뉴의 "더 많은 도구" 아래(파이어폭스 도구 모음 끝에 있음)에서 eyedropper를 찾을 수 있다.
