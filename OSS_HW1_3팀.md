@@ -21,8 +21,65 @@
 
   
 ## 2. 라이선스
+> #### Mozilla Public License 2.0
+&nbsp; 이 weak copyleft license의 권한은 라이선스된 파일과 해당 파일의 수정본의 소스 코드를 동일한 라이선스(또는 특정 경우에는 GNU 라이선스 중 하나) 하에 공개하는 것을 조건으로 한다. 이때, 저작권 및 라이선스 공지사항은 유지되어야한다. 기여자들은 특허권을 명시적으로 부여하지만 라이선스 된 작업을 사용하는 더 큰 작업은 추가된 파일에 대해 소스 코드를 제공하지 않고도 다른 조건 하에 배포될 수 있다.  
+  
+ (이미지 넣어주셈)  
 
 
+> #### Mozilla Public License 2.0 내용
+**1) Definitions**  
+
+1.1 Contributor  
+&nbsp;이는 Coverd Software를 만들거나, 제작에 기여하거나, 소유하는 각 개인 또는 법인을 의미한다.  
+
+1.2 Contributor Version
+&nbsp;이는 기여자가 사용하는 다른 사람(있는 경우)의 기여와 특정 기여자의 기여를 결합한 것을 의미한다.  
+
+1.3 Contribution  
+&nbsp;이는 특정 기여자의 Coverd Software를 의미한다.  
+
+1.4 Covered Software  
+&nbsp;이는 최초 기여자가 Exhibit A의 공지를 첨부한 소스 코드 형태, 해당 소스 코드 형태의 실행 파일 형태, 그리고 그 소스 코드 형태의 수정본을 의미하며, 각각의 경우 해당 코드의 일부를 포함한다.  
+
+1.5 Incompatible With Secondary Licenses  
+ * 초기 기여자가 Covered Software에 Exhibit B에 설명된 통지를 첨부했음; 또는  
+ * Coverd Software는 라이선스 버전 1.1 이전 버전의 조건에 따라 제공되었지만 보조 라이선스 조건에 따라 제공된 것은 아니다.
+
+1.6 Executable Form  
+&nbsp;이는 소스 코드 양식 이외의 모든 형태의 작업을 의미한다.  
+
+1.7 Larger Work  
+&nbsp;이는 Coverd Software가 아닌 별도의 파일 또는 파일에 포함된 다른 자료와 결합된 작업을 의미한다.  
+
+1.8 license  
+&nbsp;이 문서를 의미한다.  
+
+1.9 Licensable  
+&nbsp;이는 최초 부여 시점이든 그 이후든, 이 라이선스가 부여하는 모든 권리를 최대한도로 부여할 수 있는 권리를 가지는 것을 의미한다.  
+
+1.10 Modifications  
+&nbsp; 이는 다음 중 하나를 의미한다.  
+* Coverd Software의 내용을 추가, 삭제 또는 수정하여 생성되는 소스 코드 양식의 모든 파일; 또는
+* 모든 Coverd Software가 포함된 소프트 코드 양식의 새 파일
+
+1.11 Patent Claims of a Contributor  
+&nbsp; 이는 해당 기여자가 라이선스를 부여하지 않았다면 기여물이나 기여자 버전을 제작, 사용, 판매, 판매 제안, 제작 완료, 수입 또는 양도함으로써 침해될 수 있는, 해당 기여자가 라이선스를 부여할 수 있는 모든 특허 청구 항목(방법, 프로세스, 정치 청구 항목을 포함하되 이에 국한되지 않음)을 의미한다.  
+
+1.12 Secondary License  
+&nbsp; 이는 GNU General Public License(GPL) version 2.0, GNU Lesser General Public License(LGPL) version 2.1, Affero General Public License(AGPL) version 3.0  또는 해당 라이선스들의 이후 버전을 의미한다.  
+
+1.13 Source Code Form  
+&nbsp; 이는 수정할 때 선호하는 작업 형태를 의미한다.  
+
+1.14 You(or Your)  
+&nbsp; 이는 이 라이선스에 따라 권리를 행사하는 개인 또는 법인을 의미한다. 법인의 경우 "귀하"는 귀하를 통제하거나, 귀하에 의해 통제되거나, 귀하와 공동 통제 하에 있는 모든 법인을 포함한다. 이 정의에서 "통제"란 (a) 계약 등으로 해당 법인의 방향이나 관리를 직접 또는 간접적으로 결정할 수 있는 권한을 가지는 것 또는; (b) 해당 법인의 발행 주식의 50% 이상을 소유하거나 실질적으로 소유하는 것을 의미한다. 
+
+
+**2) License Grants and Conditions**
+
+
+  
 ## 3. 주요기능
 &nbsp; Firefox 에는 웹 개발자 도구 세트인 Firefox 개발자 도구 가 내장되어있다. 이를 사용하여 HTML, CSS 및 JavaScript를 검사, 편집 및 디버깅 할 수 있다. 핵심도구로는 페이지 콘텐츠와 레이아웃을 보고 편집하는 페이지 검사기, 웹 페이지에 기록된 메시지를 보고 Javascript를 사용하여 페이지와 상호 작용할 수 있는 웹 콘솔, 웹사이트나 앱이 다양한 기기와 네트워크 유형에서 어떻게 보이고 작동하는지 확인할 수 있는 반응형 디자인 모드, 페이지의 접근성 트리에 접근하여 누락된 부분이나 주의가 필요한 부분을 확인할 수 있는 수단을 제공하는 접근성 검사관 등이 있다. 
  이 외에도 다양한 개발자 도구가 Firefox에는 내장되어 있는데, 이 기능들에 대해 자세히 살펴보고자 한다. 
