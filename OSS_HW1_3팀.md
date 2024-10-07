@@ -185,7 +185,7 @@
   &nbsp;귀하는 Covered Software를 처음 받은 라이선스 버전의 조건에 따라 또는 라이선스 관리자가 게시한 후속 버전의 조건에 따라 Covered Software를 배포할 수 있다.
 
  **10.3. Modified Versions**  
-  &nbsp;귀하가 이 라이선스에 의해 규제되지 않는 소프트웨어를 생성하고 해당 소프트웨어에 대한 새로운 라이선스를 만들고자 할 경우, 이 라이선스의 수정된 버전을 만들고 사용할 수 있다. 단, 그 라이선스의 이름을 변경하고 라이선스 관리자에 대한 모든 언급을 삭제해야 한다(단, 수정된 라이선스가 이 라이선스와 다르다는 점을 명시하는 것은 예외다).
+  &nbsp;귀하가 이 라이선스에 의해 규제되지 않는 소프트웨어를 생성하고 해당 소프트웨어에 대한 새로운 라이선스를 만들고자 할 경우, 이 라이선스의 수정된 버전을 만들고 사용할 수 있다. 단, 그 라이선스의 이름을 변경하고 라이선스 관리자에 대한 모든 언급을 삭제해야 한다(단, 수정된 라이선스가 이 라이선스와 다르다는 점을 명시하는 것은 예외).
 
  **10.4. Distributing Source Code Form that is Incompatible With Secondary(보조 라이선스와 호환되지 않는 소스 코드 형태의 배포)**  
   &nbsp;귀하가 이 라이선스 버전의 조건에 따라 보조 라이선스와 호환되지 않는 소스 코드 형태를 배포하기로 선택한 경우, 이 라이선스의 부록 B에 설명된 공지를 첨부해야 한다.
@@ -801,14 +801,14 @@ Firefox Monitor 웹사이트에 접속하여 이메일 주소를 입력하면, �
 ![image](https://github.com/user-attachments/assets/0fa1578e-a8eb-4305-9f3d-53d67432aaf8)
     
  &nbsp;&nbsp; ·Post-Processing Traces with asan_symbolize.py  
-   &nbsp;&nbsp;&nbsp; llvm-symbolizer binary를 사용하는 대신, 종종 LLVM 배포에 포함되는 LLVM(`$LLVM_HOME/projects/compiler-rt/lib/asan/scripts/asan_symbolize.py`)과 함께 제공되는 `asan_symbolize.py` 스크립트를 통해 pipe the output할 수도 있다. 단점은 스크립트가 심볼을 얻으려면 `addr2line`을 사용해야 하므로 모든 라이브러리가 메모리에 로드되어야 한다는 것이다('libxul'을 포함하여 약간의 시간이 소요된다).
+   &nbsp;&nbsp;&nbsp; llvm-symbolizer binary를 사용하는 대신, 종종 LLVM 배포에 포함되는 LLVM(`$LLVM_HOME/projects/compiler-rt/lib/asan/scripts/asan_symbolize.py`)과 함께 제공되는 `asan_symbolize.py` 스크립트를 통해 pipe the output할 수도 있다. 단점은 스크립트가 심볼을 얻으려면 `addr2line`을 사용해야 하므로 모든 라이브러리가 메모리에 로드되어야 한다는 것이다('libxul'을 포함하여 약간의 시간이 소요).
 
    &nbsp;&nbsp;&nbsp; 그러나 특정 상황에서는 이 스크립트를 사용하는 것이 합리적이다. 예를 들어, 기호화되지 않은 추적을 받았거나 받은 경우에도 기호화되지 않은 추적을 생성한 원래 바이너리를 얻을 수 있다는 점을 고려할 때 스크립트를 사용하여 기호화된 추적으로 변환할 수 있다. 이러한 경우 스크립트가 작동하려면 추적의 경로가 실제 바이너리를 가리키는지 확인하거나 그에 따라 경로를 변경해야 한다.
 
    &nbsp;&nbsp;&nbsp; `asan_symbolize.py` 스크립트의 출력은 여전히 mangled되어 있으므로 나중에 `c++filt`를 통해서도 pipe the output하는 것이 좋다.
 
  > #### Troubleshooting / Known problems
-  &nbsp; **-여러 출력 파일을 생성할 때 -o를 지정할 수 없다(`Cannot specify -o when generating multiple output files`).**  
+  &nbsp; **-여러 출력 파일을 생성할 때 -o를 지정할 수 없습니다(`Cannot specify -o when generating multiple output files`).**  
    &nbsp; clang에서 "여러 출력 파일을 생성할 때 -o를 지정할 수 없습니다(cannot specify -o when generating multiple output files)"라는 오류가 발생하면 `mozconfig`에서 `elf-hack`을 비활성화하여 이 문제를 해결하라:
 
     ac_add_options --disable-elf-hack
@@ -840,7 +840,7 @@ Firefox Monitor 웹사이트에 접속하여 이메일 주소를 입력하면, �
 
  > #### LeakSanitizer
 
-  &nbsp; LeakSanitizer(LSAN)는 일반 ASAN을 위한 특별 실행 모드이다. 보수적인 스캔에 따르면 ASAN은 주어진 지점에서 라이브 블록 집합을 추적하여 종료 시 여전히 활성화되어 있지만 스택에서 도달할 수 없는 블록의 할당 스택을 출력하는 방식을 활용한다. 이는 일반적인 Gecko 종료 누출 감지(Gecko shutdown leak detection)에 참여하지 않는 `char*`와 같은 항목의 누출을 감지하는 데 매우 유용하다. LSan은 x86_64 Linux 및 OS X에서 지원된다.
+  &nbsp; LeakSanitizer(LSAN)는 일반 ASAN을 위한 특별 실행 모드이다. 보수적인 스캔에 따르면 ASAN은 주어진 지점에서 set of live blocks를를 추적하여 종료 시 여전히 활성화되어 있지만 스택에서 도달할 수 없는 블록의 할당 스택을 출력하는 방식을 활용한다. 이는 일반적인 Gecko 종료 누출 감지(Gecko shutdown leak detection)에 참여하지 않는 `char*`와 같은 항목의 누출을 감지하는 데 매우 유용하다. LSan은 x86_64 Linux 및 OS X에서 지원된다.
 
   &nbsp; 최신 버전의 Clang에서는 기본적으로 LSan이 활성화되어 있다. ASAN 빌드가 LSan을 실행하지 않게 하려면 환경 변수 `ASAN_OPSONS`를 `detect_leaks=0`으로 설정하거나 이미 설정되어 있는 경우 `:-separated list`에 항목으로 추가한다. 어떤 이유로든 활성화하지 않으려면 0이 아닌 1로 설정한다. LSan이 활성화되어 있고 non-debug 빌드를 사용하는 경우, 허위 유출을 방지하기 위해 종료 GC와 CC를 실행하도록 환경 변수 `MOZ_CC_RUN_DURN_SHUTDOWN=1`을 설정하는 것도 좋다.
 
@@ -878,8 +878,8 @@ Firefox Monitor 웹사이트에 접속하여 이메일 주소를 입력하면, �
 ![image](https://github.com/user-attachments/assets/94f7b615-e223-4700-b9e2-a4790c0f650d)
 
  &nbsp; 두 가지 방법 중 하나로 사용할 수 있다:  
-&nbsp;&nbsp; • 페이지에서 색상을 선택하여 클립보드에 복사다.  
-&nbsp;&nbsp; • 검사자 규칙 보기(Inspector's Rules view)의 색상 값을 페이지에서 선택한 색상으로 변경한다.
+&nbsp;&nbsp; • 페이지에서 색상을 선택하여 클립보드에 복사  
+&nbsp;&nbsp; • 검사자 규칙 보기(Inspector's Rules view)의 색상 값을 페이지에서 선택한 색상으로 변경
 
 > #### 클립보드에 색상 복사하기(Copying a color to the clipboard)
 
@@ -888,7 +888,8 @@ Firefox Monitor 웹사이트에 접속하여 이메일 주소를 입력하면, �
 &nbsp;&nbsp; • :doc:'Page Inspector <../page_inspector/index>' 탭을 열고 도구 모음에서 eyedropper 버튼을 클릭
 
 > #### Changing a color value in the Rules view
-&nbsp; Inspector's Rules view에 표시되는 색상 값 옆에는 색상 샘플이 있다: 샘플을 클릭하면 :doc:'color picker popup <../page_inspector/how_to/inspect_and_select_colors/index>'가 표시된다. Firefox 31의 팝업에는 eyedropper 아이콘이 포함되어 있다: 이 아이콘을 클릭하여 eyedropper를 활성화한다.
+&nbsp; Inspector's Rules view에 표시되는 색상 값 옆에는 색상 샘플이 있다: 샘플을 클릭하면 :doc:'color picker popup <../page_inspector/how_to/inspect_and_select_colors/index>'가 표시된다.  
+&nbsp; Firefox 31의 팝업에는 eyedropper 아이콘이 포함되어 있다: 이 아이콘을 클릭하여 eyedropper를 활성화한다.
 
 &nbsp; 이제 Eyedropper를 클릭하면 Rules view의 색상이 선택한 색상으로 설정된다.
 
