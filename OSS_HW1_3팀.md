@@ -410,7 +410,9 @@
 
 &nbsp; 컨테이너 탭 기능은 Firefox에서 브라우징 세션을 서로 다른 컨텍스트로 분리하여 사용자가 개인 정보 보호와 다양한 작업을 효과적으로 관리할 수 있도록 돕는다. 각 탭은 독립된 환경에서 실행되므로, 웹사이트가 서로 다른 탭의 활동을 추적할 수 없으며, 동일한 웹사이트에 여러 계정으로 동시에 로그인할 수 있다.
 
-![Container Tabs Screenshot](https://github.com/user-attachments/assets/container-tabs-screenshot.png)
+![Firefox Monitor Screenshot](https://user-images.githubusercontent.com/your-username/firefox-monitor-screenshot.png)
+
+> #### 주요 기능
 
 > #### 주요 사용법:
 > * **컨테이너 탭 활성화**: 먼저 Firefox에서 컨테이너 탭 기능을 활성화해야 한다. 설정 방법은 다음과 같다: Firefox 주소창에 `about:preferences`를 입력하고 Enter를 누른다. "개인정보 및 보안" 탭에서 "컨테이너 탭 사용" 옵션을 켜거나, Multi-Account Containers 확장 프로그램을 설치한다.
