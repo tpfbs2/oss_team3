@@ -586,8 +586,8 @@ Firefox Monitor 웹사이트에 접속하여 이메일 주소를 입력하면, �
 * Name : 해당 항목이 페이지에서 보여지는 이름을 나타낸다. name은 요소에 따라 달라진다. 텍스트(text) 요소의 경우 `textContent`로 표현되고, 양식(form) 요소의 경우 관련된 레이블(lable)의 내용으로 표현된다.
   
 &nbsp; 오른쪽에는 현재 선택한 항목에 대한 자세한 정보를 나타낸다. 나열된 속성은 다음과 같다.
-* Name : 위에서 설명한 내용과 동일
-* Role : 위에서 설명한 내용과 동일
+* Name : 위에서 설명한 내용과 동일.
+* Role : 위에서 설명한 내용과 동일.
 * actions : 항목에서 수행할 수 있는 작업 목록을 나타낸다. 예를 들어 Push 버튼에는 "누르기(Press)"가 나열되고, Link에는 "점프(Jump)"가 나열된다.
 * Value : 항목의 값을 나타내고, 항목의 유형에 따라 다른 의미를 가진다. 예를 들어 form input(role:entry)은 input에 입력된 모든 항목의 Value을 갖지만, Link 값은 <a> 요소의 href 속성에 있는 URL을 Value로 가진다. 
 * DOMNode : 접근성 트리의 항목이 나타내는 DOM 노드의 유형을 나타낸다. `target`아이콘을 클릭하여 `:doc:Page Inspector <../page_inspector/index>`에서 노드를 선택할 수 있다. 이때, `target` 아이콘 위에 마우스를 놓으면 다음과 같이 page content에서 DOMNode가 강조표시된다.
@@ -630,11 +630,11 @@ Firefox Monitor 웹사이트에 접속하여 이메일 주소를 입력하면, �
 ![accessibility-inspector-check_for_issues](https://github.com/user-attachments/assets/d4cdea11-3876-448a-b221-1def7a240a4b)  
 
 &nbsp; 드롭다운 메뉴 **Check for issues**를 클릭하여 접근성 문제를 확인할 수 있다. Check for issues 메뉴 항목은 문제가 있는 모든 항목과 해당 항목만을 빠르게 확인할 수 있는 방법이다.   
-* None : 문제 list를 표시하지 않음
-* All Isuues : 모든 유형의 문제를 확인함
-* Contrast : 시각적 대비에 문제가 있는지 확인함
-* Keyboard : 키보드를 통해 탐색할 때 발생하는 문제를 확인함
-* Text Labels : 누락된 텍스트 레이블의 문제를 확인함
+* None : 문제 list를 표시하지 않음.
+* All Isuues : 모든 유형의 문제를 확인함.
+* Contrast : 시각적 대비에 문제가 있는지 확인함.
+* Keyboard : 키보드를 통해 탐색할 때 발생하는 문제를 확인함.
+* Text Labels : 누락된 텍스트 레이블의 문제를 확인함.
 
 &nbsp; 메뉴 항목 중 하나를 선택하면 Firefox는 문서에서 선택한 문제 유형을 검색한다. 문서의 크기와 복잡성에 따라 몇 초가 걸릴 수 있으며, 스캔이 완료되면 접근성 검사기 패널의 왼쪽에 해당 유형의 문제가 있는 항목만 표시된다. 패널 오른쪽에 있는 Check 하위 패널에는 선택한 노드의 특정 문제가 나열된다.  
 &nbsp; 메뉴 항목은 토글(toggles) 역할을 한다. 해당 유형의 문제를 보려면 항목을 선택하고, 해당 유형의 문제를 지우려면 항목을 다시 선택한다.  
@@ -667,7 +667,7 @@ Firefox Monitor 웹사이트에 접속하여 이메일 주소를 입력하면, �
 
 ![screen_shot_2019-01-29_at_10 11 13](https://github.com/user-attachments/assets/4119f681-53ef-4666-9dc5-24f34d2ed032)  
 
-&nbsp; 위 이미지의 색상대비는 2.86로, 가독성을 높이기에는 좋지 못한 대비이다. 이런 경우 명암비가 허용되는 명암비를 충족하지 못한다는 경고 기호를 표기를 띄운다.  
+&nbsp; 위 이미지의 색상대비는 2.86로, 가독성을 높이기에는 좋지 못한 대비이다. 이런 경우 명암비가 허용되는 명암비를 충족하지 못한다는 경고 표시를 띄운다.  
 
 ![screen_shot_2019-01-29_at_10 21 07](https://github.com/user-attachments/assets/19272b7c-525e-45d1-9aad-1bc6434c8d50)  
 
