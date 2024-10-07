@@ -447,7 +447,7 @@
 
 #### 1. 컨테이너 탭 활성화
 
-![Activate Container Tabs](https://github.com/user-attachments/assets/activate-container-tabs.png)
+![Activate Container Tabs](https://github.com/Hodumaroo333/Hodumaroo333/blob/main/1.PNG))
 
 * Firefox 주소창에 `about:preferences` 입력 후 "개인정보 및 보안" 탭에서 "컨테이너 탭 사용" 옵션을 활성화합니다.
 
