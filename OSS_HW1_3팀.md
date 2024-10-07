@@ -389,11 +389,17 @@
 
 &nbsp; 테이블 위젯의 모든 열은 크기 조정이 가능하다. 테이블 헤더를 컨텍스트에서 클릭하고 보고 싶은 열을 선택하여 열을 숨기고 표시할 수 있다
 
+![image](https://github.com/user-attachments/assets/54bc50f1-170f-4169-ba7d-f16ab7971058)
+
 &nbsp; 테이블 위젯 상단에 검색 상자가 있다.
+
+![image](https://github.com/user-attachments/assets/8fbf902c-23fa-4dfe-876c-f3b66a19a647)
 
 &nbsp; 검색어와 일치하는 항목만 표시하도록 표를 필터링한다. 항목은 해당 필드(열을 숨긴 필드 포함)에 검색어가 포함된 경우 검색어와 일치한다.
 
 &nbsp; 또한 새 저장소 항목을 추가하거나 해당되는 경우 현재 표시되는 저장소 유형의 보기를 새로 고칠 수 있는 버튼이 있다.
+
+![image](https://github.com/user-attachments/assets/f81c5292-29a0-4c1a-8e1b-b809209ca82d)
 
   > #### 사이드바
 &nbsp; 스토리지 테이블 위젯에서 행을 선택하면 사이드바에 해당 행에 대한 세부 정보가 표시된다. 쿠키를 선택하면 해당 쿠키에 대한 모든 세부 정보가 나열된다.
