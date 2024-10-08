@@ -472,7 +472,7 @@
 
 #### 2. 컨테이너 탭 생성
 
-![Create Container Tab](https://github.com/user-attachments/assets/create-container-tab.png)
+![Create Container Tab](https://github.com/Hodumaroo333/Hodumaroo333/blob/main/2.PNG)
 
 * 탭 바에서 + 버튼을 길게 눌러 컨테이너 선택 창을 열고, 원하는 카테고리를 선택합니다.
 
