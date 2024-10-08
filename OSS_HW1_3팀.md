@@ -204,9 +204,100 @@
 
   &nbsp; 대부분의 소스코드는 Mozilla Public License를 따르고, 이를 따르지 않는 소스코드는 다음과 같은 라이선스를 따른다.  
 
-> #### APP LICENSE BLOCK
-> #### MOZ INSTALL TRACKING
-> #### MOZ CLANG RT ASAN LIB PATH
+* GNU Lesser General Public License 2.1
+* GNU Lesser General Public License 3.0
+* acorn License
+* Adjust SDK License
+* Android Open Source License
+* ANGLE License
+* Apache License 2.0
+* Apache License 2.0 with LLVM exception
+* Apple License
+* Apple Password Rules Parser License
+* ARM License
+* Babel License
+* Babylon License
+* boost License
+* BSD 2-Clause License
+* BSD 3-Clause License
+* bspatch License
+* Cairo Component Licenses
+* Chromium License
+* CodeMirror License
+* CRYPTOGAMS License
+* cubic-bezier License
+* D3 License
+* Dagre-D3 License
+* diff License
+* Disconnect.Me License
+* dtoa License
+* Dutch Spellchecking Dictionary License
+* English Spellchecking Dictionary Licenses
+* Estonian Spellchecking Dictionary License
+* Expat License
+* Firebug License
+* gfxFontList License
+* Google BSD License
+* Google Gears/iStumbler License
+* Google VP8 License
+* gyp License
+* halloc License
+* HarfBuzz License
+* ICU License
+* Immutable.js License
+* Japan Network Information Center License
+* jemalloc License
+* JSZip License
+* jQuery License
+* k_exp License
+* libc++ License
+* libcubeb License
+* libevent License
+* libffi License
+* libjingle License
+* libnestegg License
+* libsoundtouch License
+* libyuv License
+* Lithuanian Spellchecking Dictionary License
+* lodash License
+* matches License
+* MIT License
+* MySpell License
+* nICEr License
+* node-md5 License
+* nom License
+* nrappkit License
+* OpenLDAP Public License
+* OpenVision License
+* OpenVR License
+* praton License
+* praton and inet_ntop License
+* qcms License
+* QR Code Generator License
+* React License
+* React-Redux License
+* Red Hat xdg_user_dir_lookup License
+* Redux License
+* Russian Spellchecking Dictionary License
+* SCTP Licenses
+* Skia License
+* Snappy License
+* sprintf.js License
+* SunSoft License
+* SuperFastHash License
+* Twemoji License
+* unicase License
+* Unicode License
+* Unicode License V3
+* University of California License
+* V8 License
+* Validator License
+* VTune License
+* WebRTC License
+* x264 License
+* Xiph.org Foundation License
+* Other Required Notices
+* Optional Notices
   
 <br/>  
 
