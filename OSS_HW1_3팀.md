@@ -200,6 +200,14 @@
 > #### Exhibit B - "Incompatible With Secondary Licenses" Notice(보조 라이선스와 호환되지 않을 시)  
  &nbsp;이 소스 코드 양식은 Mozilla Public License, v. 2.0에 정의된 대로 "보조 라이선스와 호환되지 않는다.  
 
+### (3) 그 외 라이선스  
+
+  &nbsp; 대부분의 소스코드는 Mozilla Public License를 따르고, 이를 따르지 않는 소스코드는 다음과 같은 라이선스를 따른다.  
+
+> #### APP LICENSE BLOCK
+> #### MOZ INSTALL TRACKING
+> #### MOZ CLANG RT ASAN LIB PATH
+  
 <br/>  
 
   
