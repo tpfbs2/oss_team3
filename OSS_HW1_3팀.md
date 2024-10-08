@@ -427,8 +427,6 @@
 
 &nbsp; 컨테이너 탭 기능은 Firefox에서 브라우징 세션을 서로 다른 컨텍스트로 분리하여 사용자가 개인 정보 보호와 다양한 작업을 효과적으로 관리할 수 있도록 돕는다. 각 탭은 독립된 환경에서 실행되므로, 웹사이트가 서로 다른 탭의 활동을 추적할 수 없으며, 동일한 웹사이트에 여러 계정으로 동시에 로그인할 수 있다.
 
-![Firefox Monitor Screenshot](https://user-images.githubusercontent.com/your-username/firefox-monitor-screenshot.png)
-
 > #### 주요 기능
 
 > #### 주요 사용법:
@@ -460,13 +458,13 @@
 
 ### 사용 순서
 
-아래는 컨테이너 탭을 설정하고 사용하는 단계별 가이드입니다.
+아래는 컨테이너 탭을 설정하고 사용하는 단계별 가이드이다.
 
 #### 1. 컨테이너 탭 활성화
 
 ![Activate Container Tabs](https://github.com/Hodumaroo333/Hodumaroo333/blob/main/1.PNG))
 
-* Firefox 주소창에 `about:preferences` 입력 후 "개인정보 및 보안" 탭에서 "컨테이너 탭 사용" 옵션을 활성화합니다.
+* Firefox 주소창에 `about:preferences` 입력 후 "개인정보 및 보안" 탭에서 "컨테이너 탭 사용" 옵션을 활성화한다.
 
 ---
 
@@ -474,13 +472,13 @@
 
 ![Create Container Tab](https://github.com/Hodumaroo333/Hodumaroo333/blob/main/2.PNG)
 
-* 탭 바에서 + 버튼을 길게 눌러 컨테이너 선택 창을 열고, 원하는 카테고리를 선택합니다.
+* 탭 바에서 + 버튼을 길게 눌러 컨테이너 선택 창을 열고, 원하는 카테고리를 선택한다.
 
 ---
 
 #### 3. 탭 간 세션 격리
 
-![Session Isolation](https://github.com/user-attachments/assets/session-isolation.png)
+![Session Isolation](https://github.com/Hodumaroo333/Hodumaroo333/blob/main/3.PNG)
 
 * 각 탭에서 독립적인 계정으로 로그인하여 세션을 격리합니다. 예: 한 탭에서 Gmail A 계정, 다른 탭에서 Gmail B 계정 로그인.
 
@@ -488,30 +486,25 @@
 
 #### 4. 컨테이너 탭 관리
 
-![Manage Container Tabs](https://github.com/user-attachments/assets/manage-container-tabs.png)
+![Manage Container Tabs](https://github.com/Hodumaroo333/Hodumaroo333/blob/main/4.PNG)
 
-* `about:preferences` 페이지에서 새로운 컨테이너를 만들거나 기존 컨테이너를 수정하여 관리합니다.
+* `about:preferences` 페이지에서 새로운 컨테이너를 만들거나 기존 컨테이너를 수정하여 관리한다.
 
 ---
 
 #### 5. 사이트를 특정 컨테이너에서 열기
 
-![Open in Specific Container](https://github.com/user-attachments/assets/open-in-specific-container.png)
+![Open in Specific Container](https://github.com/Hodumaroo333/Hodumaroo333/blob/main/5.PNG)
 
-* 특정 사이트를 항상 지정된 컨테이너에서 열도록 설정하여 브라우징 환경을 관리합니다.
+* 특정 사이트를 항상 지정된 컨테이너에서 열도록 설정하여 브라우징 환경을 관리한다.
 
 ---
-
-<참고!>
-* 각 단계에 대한 이미지는 가상의 링크입니다. 실제 이미지로 교체하려면 해당 이미지의 URL로 변경해 주세요.
-* 이 Markdown 코드는 컨테이너 탭의 사용 순서를 쉽게 따라할 수 있도록 돕는 데 유용합니다. 필요한 추가 수정이나 요청이 있으면 말씀해 주세요!
 
 
 ### (4) Firefox Monitor 
 
 &nbsp; 사용자의 이메일이 데이터 유출에 노출되었는지 확인하고, 이에 대한 경고를 제공하는 보안 서비스다. 이는 Mozilla가 제공하는 서비스로, 특히 개인정보 보호와 온라인 보안에 대한 관심이 증가하는 현대에 매우 유용한 도구로 자리 잡고 있다. 
 
-![Firefox Monitor Screenshot](https://github.com/user-attachments/assets/firefox-monitor-screenshot.png)
 
 > #### 주요 기능
 > * **데이터 유출 감지**: 
@@ -536,44 +529,39 @@ Firefox Monitor 웹사이트에 접속하여 이메일 주소를 입력하면, �
 
 ### 사용 순서
 
-아래는 Firefox Monitor를 설정하고 사용하는 단계별 가이드입니다.
+아래는 Firefox Monitor를 설정하고 사용하는 단계별 가이드다.
 
 #### 1. 이메일 등록
 
-![Email Registration](https://github.com/user-attachments/assets/email-registration.png)
+![Email Registration](https://github.com/Hodumaroo333/Hodumaroo333/blob/main/11.PNG)
 
-* Firefox Monitor 웹사이트에 접속하여 이메일 주소를 입력합니다.
+* Firefox Monitor 웹사이트에 접속하여 이메일 주소를 입력한다.
 
 ---
 
 #### 2. 데이터 유출 확인
 
-![Data Breach Check](https://github.com/user-attachments/assets/data-breach-check.png)
+![Data Breach Check](https://github.com/Hodumaroo333/Hodumaroo333/blob/main/22.PNG)
 
-* 입력한 이메일이 과거 데이터 유출 사건에 포함되었는지 확인합니다.
+* 입력한 이메일이 과거 데이터 유출 사건에 포함되었는지 확인한다.
 
 ---
 
 #### 3. 유출 경고 수신
 
-![Breach Alert](https://github.com/user-attachments/assets/breach-alert.png)
+![Breach Alert](https://github.com/Hodumaroo333/Hodumaroo333/blob/main/33.PNG)
 
-* 등록한 이메일이 새로운 유출 사건에 포함될 경우 즉시 알림을 받습니다.
+* 등록한 이메일이 새로운 유출 사건에 포함될 경우 즉시 알림을 받는다.
 
 ---
 
 #### 4. 조치 안내 확인
 
-![Action Guidance](https://github.com/user-attachments/assets/action-guidance.png)
+![Action Guidance](https://github.com/Hodumaroo333/Hodumaroo333/blob/main/44.PNG)
 
-* 유출이 확인되면, 필요한 조치를 안내받습니다(예: 비밀번호 변경, 이중 인증 설정 등).
+* 유출이 확인되면, 필요한 조치를 안내받는다(예: 비밀번호 변경, 이중 인증 설정 등).
 
 ---
-
-<참고!>
-* 각 단계에 대한 이미지는 가상의 링크입니다. 실제 이미지로 교체하려면 해당 이미지의 URL로 변경해 주세요.
-* 이 Markdown 코드는 Firefox Monitor의 사용 순서를 쉽게 따라할 수 있도록 돕는 데 유용합니다. 필요한 추가 수정이나 요청이 있으면 말씀해 주세요!
-
 
 ### (5) Accessibility Inspector (접근성 검사기)
 &nbsp; 접근성 검사기는 접근성 트리를 통해 현재 페이지에서 보조 기술에 노출된 중요한 정보에 액세스할 수 있는 수단을 제공하는 기능으로, 누락되었거나 주의가 필요한 사항을 확인할 수 있다. 
