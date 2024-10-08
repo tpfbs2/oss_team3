@@ -296,8 +296,6 @@
 * WebRTC License
 * x264 License
 * Xiph.org Foundation License
-* Other Required Notices
-* Optional Notices
   
 <br/>  
 
